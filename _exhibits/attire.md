@@ -3,7 +3,7 @@ layout: exhibit
 title: 'Attire'
 author: Megan Eaton Robb
 publish_date: 2021-08-18
-permalink: /exhibits/attire/
+permalink: 
 ---
 <p>Women like Elizabeth Sharaf un-Nisa were erased and obscured from official correspondence, baptism records, and other textual sources. In the face of these erasures, <a href="https://unstable-archives.github.io/unstable_archives/unstable_archives/item7/">jewelry</a> and textiles offer historians new and meaningful sources that relate to her life. While these new sources cannot fill in the gaps left by erasures in formal, textual documents, they offer alternative angles to consider productively what she valued enough to preserve.</p>
 
