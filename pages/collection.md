@@ -1,7 +1,7 @@
 ---
-layout: page
-title: Browse the Collection
-permalink: /collection/
+layout: default
+title: Collections
 ---
 
-{% include collection_gallery.html facet_by='object_type' collection='unstable_archives' %}
+Collections page (Eleventy preview only).  
+The original Jekyll collection browser is disabled here so this branch can build safely.
