@@ -3,7 +3,6 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy({"img": "img"});
   eleventyConfig.addPassthroughCopy({"search": "search"});
 
-  eleventyConfig.addLayoutAlias('default', 'layouts/default.liquid');
 
   return {
     dir: {
