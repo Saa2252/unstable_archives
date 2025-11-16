@@ -3,6 +3,11 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy({"img": "img"});
   eleventyConfig.addPassthroughCopy({"search": "search"});
 
+  // Make Jekyll-style `absolute_url` work in Eleventy.
+  // For now, we just return the URL unchanged.
+  eleventyConfig.addFilter("absolute_url", function(url) {
+    return url;
+  });
 
   return {
     dir: {
