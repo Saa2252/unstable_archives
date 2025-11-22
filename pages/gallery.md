@@ -9,4 +9,4 @@ I'm using this page to see if the more sophisticated gallery displays in our Wax
 
 ### Browse Collection
 
-{% include collection_gallery.html collection='unstable_archives' facet_by='object_type' %}
+{% raw %} {% include collection_gallery.html collection='unstable_archives' facet_by='object_type' %} {% endraw %} 
