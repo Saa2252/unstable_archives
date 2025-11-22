@@ -1,0 +1,66 @@
+---
+layout: none
+---
+{
+  "@id": "{{ '/' | absolute_url }}img/derivatives/iiif/sequence/item28_dml0224.json",
+  "@type": "sc:Sequence",
+  "canvases": [
+    {
+      "@type": "sc:Canvas",
+      "@id": "{{ '/' | absolute_url }}img/derivatives/iiif/canvas/item28_dml0224.json",
+      "label": "Page 1",
+      "width": 1928,
+      "height": 5100,
+      "thumbnail": "{{ '/' | absolute_url }}img/derivatives/iiif/images/item28_dml0224/full/250,/0/default.jpg",
+      "images": [
+        {
+          "@type": "oa:Annotation",
+          "@id": "{{ '/' | absolute_url }}img/derivatives/iiif/annotation/item28_dml0224.json",
+          "motivation": "sc:painting",
+          "resource": {
+            "@id": "{{ '/' | absolute_url }}img/derivatives/iiif/images/item28_dml0224/full/full/0/default.jpg",
+            "@type": "dcterms:Image",
+            "format": "image/jpeg",
+            "service": {
+              "@context": "http://iiif.io/api/image/2/context.json",
+              "@id": "{{ '/' | absolute_url }}img/derivatives/iiif/images/item28_dml0224",
+              "profile": "http://iiif.io/api/image/2/level0.json"
+            },
+            "width": 964,
+            "height": 2550
+          },
+          "on": "{{ '/' | absolute_url }}img/derivatives/iiif/canvas/item28_dml0224.json"
+        }
+      ]
+    },
+    {
+      "@type": "sc:Canvas",
+      "@id": "{{ '/' | absolute_url }}img/derivatives/iiif/canvas/item28_dml0225.json",
+      "label": "Page 2",
+      "width": 1994,
+      "height": 5100,
+      "thumbnail": "{{ '/' | absolute_url }}img/derivatives/iiif/images/item28_dml0225/full/250,/0/default.jpg",
+      "images": [
+        {
+          "@type": "oa:Annotation",
+          "@id": "{{ '/' | absolute_url }}img/derivatives/iiif/annotation/item28_dml0225.json",
+          "motivation": "sc:painting",
+          "resource": {
+            "@id": "{{ '/' | absolute_url }}img/derivatives/iiif/images/item28_dml0225/full/full/0/default.jpg",
+            "@type": "dcterms:Image",
+            "format": "image/jpeg",
+            "service": {
+              "@context": "http://iiif.io/api/image/2/context.json",
+              "@id": "{{ '/' | absolute_url }}img/derivatives/iiif/images/item28_dml0225",
+              "profile": "http://iiif.io/api/image/2/level0.json"
+            },
+            "width": 997,
+            "height": 2550
+          },
+          "on": "{{ '/' | absolute_url }}img/derivatives/iiif/canvas/item28_dml0225.json"
+        }
+      ]
+    }
+  ],
+  "@context": "http://iiif.io/api/presentation/2/context.json"
+}

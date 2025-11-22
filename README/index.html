@@ -1,0 +1,94 @@
+<h1>minicomp/wax 🐝</h1>
+<p><a href="https://badge.fury.io/rb/wax_tasks"><img src="https://badge.fury.io/rb/wax_theme.svg" alt="Gem Version"></a>
+<a href="http://makeapullrequest.com"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="PRs Welcome"></a>
+<a href="https://github.com/minicomp/wax/actions?query=workflow%3Aci%3Atest"><img src="https://github.com/minicomp/wax/workflows/ci:test/badge.svg" alt="CI:Test"></a>
+<a href="https://depfu.com/github/minicomp/wax?project_id=10550"><img src="https://badges.depfu.com/badges/9d4da973f2cd2680c11ca34738c2dfb2/overview.svg" alt="Depfu"></a>
+<a href="https://badge.fury.io/rb/wax_theme"><img src="https://img.shields.io/gem/dt/wax_theme.svg?color=046d0b" alt="Gem Downloads"></a>
+<a href="https://docs.google.com/forms/d/e/1FAIpQLSeD77mBp0Y13mFePF8UmDwFrlbxNx3VttEjz_3dgglJeK-Zbg/viewform?c=0&amp;w=1"><img src="https://img.shields.io/badge/Slack-%23minicomp--wax-brightgreen.svg" alt="Join the chat the minicomp-wax channel of the Code4Lib Slack"></a>
+<img src="https://img.shields.io/github/license/minicomp/wax_tasks.svg?color=c6a1e0" alt="License"></p>
+<p><strong>Wax is an extensible workflow for producing scholarly exhibitions with minimal computing principles.</strong><br>
+It's comprised of: <strong>a few Ruby gems</strong> for processing image data and associated metadata (<a href="https://github.com/minicomp/wax_tasks/">wax_tasks</a>, <a href="https://github.com/minicomp/wax_iiif/">wax_iiif</a>), <strong>a Jekyll theme</strong> (<a href="https://github.com/minicomp/wax/">wax_theme</a>), and (hopefully soon!) a lot of <strong>documentation and recipes</strong> for creating, deploying, and maintaining digital exhibitions.</p>
+<ul>
+<li><a href="#Prerequisites">Prerequisites</a></li>
+<li><a href="#Getting-Started">Getting Started</a></li>
+<li><a href="#Using-Docker">Using Docker</a></li>
+<li><a href="#Contributing">Contributing</a></li>
+</ul>
+<br>
+<a href="https://minicomp.github.io/wax/">
+  <img src="https://raw.githubusercontent.com/minicomp/wiki/main/src/assets/wax_screen.gif?raw=true"/>
+</a>
+<br>
+<h1>Prerequisites</h1>
+<p>You'll need <code>git</code> and <code>ruby &gt;= 2.4</code> with <code>bundler</code> installed.
+These dependencies can either be installed natively on your system or within a <a href="#Using-Docker">Docker environment</a>. For instructions, check the Wiki's <a href="https://minicomp.github.io/wiki/wax/setting-up-your-system/">Setting up your system page</a>.</p>
+<p>Check your versions with:</p>
+<pre><code class="language-sh">ruby -v
+</code></pre>
+<pre><code class="language-sh">bundler -v
+</code></pre>
+<p>To process images, you will also need to have ImageMagick and Ghostscript installed and functional. You can check to see if you have ImageMagick by running:</p>
+<pre><code class="language-sh">convert -version
+</code></pre>
+<p>... and check Ghostscript with:</p>
+<pre><code class="language-sh">gs -version
+</code></pre>
+<p>Vips will soon replace ImageMagick for Wax's image processing. If you're ahead of the curve, you can check your version with</p>
+<pre><code class="language-sh">vips -version
+</code></pre>
+<h1>Getting Started</h1>
+<p><strong>There are a few ways to get started with Wax, depending on your needs.</strong> Copyin the demo template is suggested for new users so you can see how a full Wax site would work. <strong>Advanced Jekyllers</strong> can start from a clean Jekyll install. To start with the demo:</p>
+<ol>
+<li>
+<p>Log into your <a href="https://github.com/">GitHub account</a>. (Or sign up if you don't have one!)</p>
+</li>
+<li>
+<p>Head to the <a href="https://github.com/">Wax demo page</a> and click <strong>&quot;Use this Template&quot;</strong> button. It will prompt you to create a copy of the repository in your own account. You should name it after the collection or exhibition you'll make, since this name will inform your free URL for the project with GitHub. For this example, our repository is called <strong>&quot;my-wax-site&quot;</strong>.</p>
+</li>
+<li>
+<p>On your own, new Wax repository page, click the Green <strong>&quot;Code&quot;</strong> button and copy the URL it provides to your clipboard, e.g,</p>
+</li>
+</ol>
+<pre><code class="language-sh">git@github.com:mnyrop/my-wax-site.git
+</code></pre>
+<ol start="4">
+<li>Open your Terminal/Shell application and change directory into where you'd like to work on your project, e.g., your Desktop:</li>
+</ol>
+<pre><code class="language-sh">cd ~/Desktop
+</code></pre>
+<ol start="5">
+<li>Run the <code>git clone</code> command plus the link you copied on your clipboard in one line, e.g.,</li>
+</ol>
+<pre><code class="language-sh">git clone git@github.com:mnyrop/my-wax-site.git
+</code></pre>
+<ol start="6">
+<li>When the clone is complete, change directory into your newly cloned project folder, in our case:</li>
+</ol>
+<pre><code class="language-sh">cd my-wax-site
+</code></pre>
+<ol start="7">
+<li>Install the project-specific Ruby dependencies by running the command</li>
+</ol>
+<pre><code class="language-sh">bundle install
+</code></pre>
+<ol start="8">
+<li>Run the demo site:</li>
+</ol>
+<pre><code class="language-sh">bundle exec jekyll serve
+</code></pre>
+<p>After the last step, the terminal will provide you with a localhost URL for you to see your local copy of the site on your browser. This is the template site you will make changes to in order to make your own exhibition. For more, check out the <a href="https://minicomp.github.io/wiki/wax/">Minicomp/Wax Wiki</a>.</p>
+<h1>Using Docker</h1>
+<p>To use Wax in a container, make sure you are familiar with Docker and have <a href="https://docs.docker.com/get-docker/">Docker installed</a>.</p>
+<p>Run the &quot;Getting Started&quot; steps 1-6 above to copy and <code>cd</code> into the repo.</p>
+<p>Next, build the <code>minicomp/wax</code> base image:</p>
+<pre><code>docker build -t minicomp/wax .
+</code></pre>
+<p>You will run all of the Wax tasks and commands within an interactive bash container, which you can create and access by running:</p>
+<pre><code>docker run -it --rm -v &quot;$PWD&quot;:/wax --name wax -p 4000:4000 minicomp/wax bash
+</code></pre>
+<p>To serve the site, you can run the following command in the guest container and view it in your host browser:</p>
+<pre><code>bundle exec jekyll serve --host 0.0.0.0
+</code></pre>
+<p>You can exit the container at any time with <code>$ exit</code>, which will automatically stop and remove the container.</p>
+<h1>Contributing</h1>
+<p>We welcome contributions to Wax, including bug reports and feature requests (submitted as <a href="https://github.com/minicomp/wax/issues">Issues</a>), code contributions (submitted as <a href="https://github.com/minicomp/wax/pulls">Pull Requests</a>), and documentation updates (submitted however!) Not sure where to start? Feel free to get in touch via <a href="https://github.com/minicomp/wax/issues">GitHub issue</a> or grab an invite to join the conversation on the <code>#minicomp-wax</code> channel of the <a href="https://docs.google.com/forms/d/e/1FAIpQLSeD77mBp0Y13mFePF8UmDwFrlbxNx3VttEjz_3dgglJeK-Zbg/viewform?c=0&amp;w=1">Code4Lib Slack</a>.</p>

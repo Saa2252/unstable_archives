@@ -1,0 +1,66 @@
+---
+layout: none
+---
+{
+  "@id": "{{ '/' | absolute_url }}img/derivatives/iiif/sequence/item38_1_dml0147.json",
+  "@type": "sc:Sequence",
+  "canvases": [
+    {
+      "@type": "sc:Canvas",
+      "@id": "{{ '/' | absolute_url }}img/derivatives/iiif/canvas/item38_1_dml0147.json",
+      "label": "Page 1",
+      "width": 2100,
+      "height": 1665,
+      "thumbnail": "{{ '/' | absolute_url }}img/derivatives/iiif/images/item38_1_dml0147/full/250,/0/default.jpg",
+      "images": [
+        {
+          "@type": "oa:Annotation",
+          "@id": "{{ '/' | absolute_url }}img/derivatives/iiif/annotation/item38_1_dml0147.json",
+          "motivation": "sc:painting",
+          "resource": {
+            "@id": "{{ '/' | absolute_url }}img/derivatives/iiif/images/item38_1_dml0147/full/full/0/default.jpg",
+            "@type": "dcterms:Image",
+            "format": "image/jpeg",
+            "service": {
+              "@context": "http://iiif.io/api/image/2/context.json",
+              "@id": "{{ '/' | absolute_url }}img/derivatives/iiif/images/item38_1_dml0147",
+              "profile": "http://iiif.io/api/image/2/level0.json"
+            },
+            "width": 2100,
+            "height": 1665
+          },
+          "on": "{{ '/' | absolute_url }}img/derivatives/iiif/canvas/item38_1_dml0147.json"
+        }
+      ]
+    },
+    {
+      "@type": "sc:Canvas",
+      "@id": "{{ '/' | absolute_url }}img/derivatives/iiif/canvas/item38_1_dml0148.json",
+      "label": "Page 2",
+      "width": 2160,
+      "height": 1651,
+      "thumbnail": "{{ '/' | absolute_url }}img/derivatives/iiif/images/item38_1_dml0148/full/250,/0/default.jpg",
+      "images": [
+        {
+          "@type": "oa:Annotation",
+          "@id": "{{ '/' | absolute_url }}img/derivatives/iiif/annotation/item38_1_dml0148.json",
+          "motivation": "sc:painting",
+          "resource": {
+            "@id": "{{ '/' | absolute_url }}img/derivatives/iiif/images/item38_1_dml0148/full/full/0/default.jpg",
+            "@type": "dcterms:Image",
+            "format": "image/jpeg",
+            "service": {
+              "@context": "http://iiif.io/api/image/2/context.json",
+              "@id": "{{ '/' | absolute_url }}img/derivatives/iiif/images/item38_1_dml0148",
+              "profile": "http://iiif.io/api/image/2/level0.json"
+            },
+            "width": 2160,
+            "height": 1651
+          },
+          "on": "{{ '/' | absolute_url }}img/derivatives/iiif/canvas/item38_1_dml0148.json"
+        }
+      ]
+    }
+  ],
+  "@context": "http://iiif.io/api/presentation/2/context.json"
+}

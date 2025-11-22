@@ -1,0 +1,78 @@
+---
+layout: none
+---
+{
+  "@context": "http://iiif.io/api/presentation/2/context.json",
+  "@id": "{{ '/' | absolute_url }}img/derivatives/iiif/item29/manifest.json",
+  "@type": "sc:Manifest",
+  "label": "item29",
+  "thumbnail": "{{ '/' | absolute_url }}img/derivatives/iiif/images/item29_dml0226/full/250,/0/default.jpg",
+  "viewingDirection": "left-to-right",
+  "viewingHint": "individuals",
+  "sequences": [
+    {
+      "@id": "{{ '/' | absolute_url }}img/derivatives/iiif/sequence/item29_dml0226.json",
+      "@type": "sc:Sequence",
+      "canvases": [
+        {
+          "@type": "sc:Canvas",
+          "@id": "{{ '/' | absolute_url }}img/derivatives/iiif/canvas/item29_dml0226.json",
+          "label": "Page 1",
+          "width": 1256,
+          "height": 2100,
+          "thumbnail": "{{ '/' | absolute_url }}img/derivatives/iiif/images/item29_dml0226/full/250,/0/default.jpg",
+          "images": [
+            {
+              "@type": "oa:Annotation",
+              "@id": "{{ '/' | absolute_url }}img/derivatives/iiif/annotation/item29_dml0226.json",
+              "motivation": "sc:painting",
+              "resource": {
+                "@id": "{{ '/' | absolute_url }}img/derivatives/iiif/images/item29_dml0226/full/full/0/default.jpg",
+                "@type": "dcterms:Image",
+                "format": "image/jpeg",
+                "service": {
+                  "@context": "http://iiif.io/api/image/2/context.json",
+                  "@id": "{{ '/' | absolute_url }}img/derivatives/iiif/images/item29_dml0226",
+                  "profile": "http://iiif.io/api/image/2/level0.json"
+                },
+                "width": 1256,
+                "height": 2100
+              },
+              "on": "{{ '/' | absolute_url }}img/derivatives/iiif/canvas/item29_dml0226.json"
+            }
+          ]
+        },
+        {
+          "@type": "sc:Canvas",
+          "@id": "{{ '/' | absolute_url }}img/derivatives/iiif/canvas/item29_dml0227.json",
+          "label": "Page 2",
+          "width": 1223,
+          "height": 2100,
+          "thumbnail": "{{ '/' | absolute_url }}img/derivatives/iiif/images/item29_dml0227/full/250,/0/default.jpg",
+          "images": [
+            {
+              "@type": "oa:Annotation",
+              "@id": "{{ '/' | absolute_url }}img/derivatives/iiif/annotation/item29_dml0227.json",
+              "motivation": "sc:painting",
+              "resource": {
+                "@id": "{{ '/' | absolute_url }}img/derivatives/iiif/images/item29_dml0227/full/full/0/default.jpg",
+                "@type": "dcterms:Image",
+                "format": "image/jpeg",
+                "service": {
+                  "@context": "http://iiif.io/api/image/2/context.json",
+                  "@id": "{{ '/' | absolute_url }}img/derivatives/iiif/images/item29_dml0227",
+                  "profile": "http://iiif.io/api/image/2/level0.json"
+                },
+                "width": 1223,
+                "height": 2100
+              },
+              "on": "{{ '/' | absolute_url }}img/derivatives/iiif/canvas/item29_dml0227.json"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "full": "{{ '/' | absolute_url }}img/derivatives/iiif/images/item29_dml0226/full/full/0/default.jpg",
+  "fullwidth": "{{ '/' | absolute_url }}img/derivatives/iiif/images/item29_dml0226/full/1140,/0/default.jpg"
+}
