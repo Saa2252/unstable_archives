@@ -1,0 +1,48 @@
+/*
+variable declaration
+*/
+
+/* branding */
+$logo: url("/unstable_archives/assets/logo.png");
+
+/* text */
+
+$body-font:       "Helvetica", sans-serif;
+$heading-font:    "Helvetica", sans-serif;
+
+
+/* Image Size */
+
+$thumbnail-height: 140px;
+$thumbnail-width: 140px;
+
+/* colors */
+
+$text-color:      #000000; /* black */
+$bg-color:        #ECECEC; /* a light tint of tan */
+$neutral:         #C3C1C3; /* pale silver */
+$accent-light:    #003366; /* antique ruby */
+$accent-dark:     #B01E39;/* deep saffron */
+
+/* viewport sizes */
+
+$max-width:       800px;
+
+/* margins */
+
+$less-margin:     1.0rem;
+$margin:          1.5rem;
+$more-margin:     2.0rem;
+$super-margin:    3.0rem;
+
+
+$viewer-height:   550px;
+$parallax-height: 350px;
+$footer-height:   250px;
+
+/*
+font & asset import
+*/
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&font-display=auto');
+@import 'wax';

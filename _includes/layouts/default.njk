@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang='en-us'>
+  {% include "head.njk" %}
+
+  <body>
+    <time datetime='{{ page.date | date_to_xmlschema if page.date else "" }}'></time>
+    {% include "header.njk" %}
+
+    {% if banner %}
+      {% set b = banner %}
+      {% include "parallax_image.njk" %}
+    {% endif %}
+
+    <div id='wax-main'>
+      <div id='wax-content' class='wax-inline-container'>
+        {{ content | safe }}
+      </div>
+    </div>
+
+    {% include "footer.njk" %}
+  </body>
+
+  <script type='text/javascript' async defer src='{{ "/assets/bootstrap/bootstrap.min.js" | absolute_url }}'></script>
+  <script type='text/javascript' async defer src='{{ "/assets/popper.min.js" | absolute_url }}'></script>
+</html>

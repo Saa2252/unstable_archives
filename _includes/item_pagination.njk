@@ -1,0 +1,29 @@
+{# Pagination for unstable_archives collection items #}
+{% set allItems = collections.unstable_archives %}
+{% set prevlink = null %}
+{% set nextlink = null %}
+
+{% if allItems %}
+  {% for item in allItems %}
+    {% if item.url == page.url %}
+      {% if loop.first %}
+        {% set prevlink = allItems[allItems.length - 1].url %}
+      {% else %}
+        {% set prevlink = allItems[loop.index0 - 1].url %}
+      {% endif %}
+
+      {% if loop.last %}
+        {% set nextlink = allItems[0].url %}
+      {% else %}
+        {% set nextlink = allItems[loop.index0 + 1].url %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+{% if prevlink and nextlink %}
+  <script type='text/javascript'>
+    $('#prevlink').append(`<a href='{{ prevlink | absolute_url }}' display='none'>&#8249;</a>`);
+    $('#nextlink').append(`<a href='{{ nextlink | absolute_url }}' display='none'>&#8250;</a>`);
+  </script>
+{% endif %}

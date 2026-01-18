@@ -1,0 +1,15 @@
+---
+layout: default
+---
+
+<div class='exhibit-meta'>
+  <h1 class='exhibit-title'>{{ title }}</h1>
+  <h3 class='exhibit-author'>{{ author }}</h3>
+  <p class='exhibit-date'>Published on
+    <time datetime='{{ publish_date | date_to_xmlschema }}'>
+    {{ publish_date | date_to_string }}
+    </time>
+  </p>
+</div>
+
+{{ content | safe }}

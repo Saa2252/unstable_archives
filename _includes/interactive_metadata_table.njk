@@ -1,0 +1,38 @@
+{# Parameters: tableCollection (set before include) #}
+<link rel="stylesheet" type="text/css" href="{{ '/assets/datatables/datatables.css' | absolute_url }}" />
+<script type="text/javascript" src="{{ 'assets/datatables/datatables.min.js' | absolute_url }}"></script>
+
+<table id='{{ tableCollection }}-datatable' class='datatable display'></table>
+
+{% set tableData = unstable_archives_data.items if tableCollection == 'unstable_archives' else [] %}
+
+{% set columns %}
+{% if tableData and tableData.length > 0 %}
+  {% set firstItem = tableData[0] %}
+  {% for key, val in firstItem %}
+    {
+      "title": "{{ key }}",
+      "data": "{{ key }}"
+    }{% if not loop.last %}, {% endif %}
+  {% endfor %}
+{% endif %}
+{% endset %}
+
+<script>
+  $(document).ready(function () {
+    $('#{{ tableCollection }}-datatable').DataTable({
+      data: {{ tableData | jsonify | safe }},
+      columns: [{{ columns | safe }}],
+      scrollY: 600,
+      scrollX: 600,
+      paging: false,
+      fixedHeader: false,
+      searching: false,
+      ordering:  false,
+      dom: 'Bfrtip',
+      buttons: [
+        'csvHtml5'
+      ]
+    });
+  });
+</script>

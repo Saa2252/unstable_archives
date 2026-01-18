@@ -4,12 +4,12 @@ permalink: /exhibits/
 title: Featured Exhibits
 ---
 
-{% assign exhibits = site.exhibits | where: 'layout','exhibit' %}
+{% set exhibits = collections.exhibits %}
 <ul>
   {% for exhibit in exhibits %}
     <li>
       <a href='{{ exhibit.url | absolute_url }}'>
-        {{ exhibit.title }}
+        {{ exhibit.data.title }}
       </a>
     </li>
   {% endfor %}

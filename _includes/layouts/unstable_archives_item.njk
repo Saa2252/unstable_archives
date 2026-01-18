@@ -1,0 +1,128 @@
+---
+layout: default
+image_viewer: 'openseadragon'
+show_pagination: true
+---
+
+{# The block below controls the image viewer #}
+
+<h3 alt="{{ label | escape }}" class='item-label'>{{ label }}</h3>
+
+{% set viewer = image_viewer if image_viewer else 'openseadragon' %}
+
+{% if viewer %}
+  <div class='item-view'>
+    <span class='pagination-link' id='prevlink'></span>
+    {% if viewer == 'openseadragon' %}
+      {% include "osd_iiif_image_viewer.njk" %}
+    {% else %}
+      {% include "simple_image_viewer.njk" %}
+    {% endif %}
+    <span class='pagination-link' id='nextlink'></span>
+  </div>
+  {% include "item_pagination.njk" %}
+{% endif %}
+
+{% if translation %}
+  <div class='translation'>
+    <p>{{ translation }}</p>
+  </div>
+{% endif %}
+
+{% if transcription %}
+  <div class='transcription'>
+    <p>{{ transcription }}</p>
+  </div>
+{% endif %}
+
+{# Metadata table for unstable_archives items #}
+<dl class='metadata-block'>
+  {% if label %}
+    <dt>Label</dt>
+    <dd>{{ label }}</dd>
+  {% endif %}
+  {% if summary %}
+    <dt>Summary</dt>
+    <dd>{{ summary }}</dd>
+  {% endif %}
+  {% if contents %}
+    <dt>Contents</dt>
+    <dd>{{ contents }}</dd>
+  {% endif %}
+  {% if keywords %}
+    <dt>Keywords</dt>
+    <dd>{{ keywords }}</dd>
+  {% endif %}
+  {% if object_type %}
+    <dt>Object Type</dt>
+    <dd>{{ object_type }}</dd>
+  {% endif %}
+  {% if shelfmark %}
+    <dt>Shelfmark</dt>
+    <dd>{{ shelfmark }}</dd>
+  {% endif %}
+  {% if metadata_creators %}
+    <dt>Metadata Creators</dt>
+    <dd>{{ metadata_creators }}</dd>
+  {% endif %}
+  {% if repository_city %}
+    <dt>Repository City</dt>
+    <dd>{{ repository_city }}</dd>
+  {% endif %}
+  {% if roles %}
+    <dt>Roles</dt>
+    <dd>{{ roles }}</dd>
+  {% endif %}
+  {% if _date %}
+    <dt>Date</dt>
+    <dd>{{ _date }}</dd>
+  {% endif %}
+  {% if place_origin %}
+    <dt>Place Origin</dt>
+    <dd>{{ place_origin }}</dd>
+  {% endif %}
+  {% if provenance_details %}
+    <dt>Provenance Details</dt>
+    <dd>{{ provenance_details }}</dd>
+  {% endif %}
+  {% if language %}
+    <dt>Language</dt>
+    <dd>{{ language }}</dd>
+  {% endif %}
+  {% if decoration %}
+    <dt>Decoration</dt>
+    <dd>{{ decoration }}</dd>
+  {% endif %}
+  {% if hand_script %}
+    <dt>Hand Script</dt>
+    <dd>{{ hand_script }}</dd>
+  {% endif %}
+  {% if dimensions %}
+    <dt>Dimensions</dt>
+    <dd>{{ dimensions }}</dd>
+  {% endif %}
+  {% if additional_info %}
+    <dt>Additional Info</dt>
+    <dd>{{ additional_info }}</dd>
+  {% endif %}
+  {% if notes_digitizer %}
+    <dt>Notes Digitizer</dt>
+    <dd>{{ notes_digitizer }}</dd>
+  {% endif %}
+  {% if copyright_statement %}
+    <dt>Copyright Statement</dt>
+    <dd>{{ copyright_statement }}</dd>
+  {% endif %}
+  {% if terms_use %}
+    <dt>Terms of Use</dt>
+    <dd>{{ terms_use }}</dd>
+  {% endif %}
+  {% if images %}
+    <dt>Images</dt>
+    <dd>{{ images }}</dd>
+  {% endif %}
+  {% if manifest %}
+    <dt>IIIF Manifest</dt>
+    <dd><a href="{{ manifest | absolute_url }}" target="_blank" rel="noreferrer">{{ manifest | absolute_url }}</a></dd>
+  {% endif %}
+</dl>

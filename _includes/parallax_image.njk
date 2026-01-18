@@ -1,0 +1,29 @@
+{# Parameters: b.collection, b.pid, b.y, b.height, b.image (set before include) #}
+{% if b.image %}
+  {% set parallaxImage = b.image %}
+{% else %}
+  {% set parallaxItem = collections[b.collection] | where('pid', b.pid) | first if b.collection and b.pid %}
+  {% set parallaxImage = parallaxItem.data.full if parallaxItem else '' %}
+{% endif %}
+
+{% set parallaxY = b.y if b.y else '15%' %}
+
+{% set parallaxStyle %}
+  background-image: url('{{ parallaxImage | absolute_url }}');
+  background-position: 0% {{ parallaxY }};
+  {% if b.height %}
+  height: {{ b.height }} !important;
+  {% endif %}
+{% endset %}
+
+<div class='wax-parallax full-width {% if banner %}top-banner{% else %}inline-parallax{% endif %}'>
+  <div class='parallax-image' style="{{ parallaxStyle | trim }}"></div>
+
+  {% if parallaxItem and parallaxItem.data.label %}
+  <div class='parallax-caption'>
+    <div class='wax-inline-container'>
+      Above: <a href='{{ parallaxItem.url | absolute_url }}'>{{ parallaxItem.data.label }}</a>
+    </div>
+  </div>
+  {% endif %}
+</div>

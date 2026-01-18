@@ -1,0 +1,39 @@
+---
+permalink: /search/index.json
+eleventyExcludeFromCollections: true
+---
+[
+{% for item in collections.unstable_archives %}
+  {
+    "pid": "{{ item.data.pid | escape }}",
+    "label": {{ item.data.label | jsonify | safe }},
+    "translation": {{ item.data.translation | jsonify | safe }},
+    "transcription": {{ item.data.transcription | jsonify | safe }},
+    "summary": {{ item.data.summary | jsonify | safe }},
+    "contents": {{ item.data.contents | jsonify | safe }},
+    "keywords": {{ item.data.keywords | jsonify | safe }},
+    "object_type": {{ item.data.object_type | jsonify | safe }},
+    "shelfmark": {{ item.data.shelfmark | jsonify | safe }},
+    "metadata_creators": {{ item.data.metadata_creators | jsonify | safe }},
+    "repository_city": {{ item.data.repository_city | jsonify | safe }},
+    "roles": {{ item.data.roles | jsonify | safe }},
+    "_date": {{ item.data._date | jsonify | safe }},
+    "place_origin": {{ item.data.place_origin | jsonify | safe }},
+    "provenance_details": {{ item.data.provenance_details | jsonify | safe }},
+    "language": {{ item.data.language | jsonify | safe }},
+    "decoration": {{ item.data.decoration | jsonify | safe }},
+    "layout": "unstable_archives_item",
+    "hand_script": {{ item.data.hand_script | jsonify | safe }},
+    "dimensions": {{ item.data.dimensions | jsonify | safe }},
+    "additional_info": {{ item.data.additional_info | jsonify | safe }},
+    "notes_digitizer": {{ item.data.notes_digitizer | jsonify | safe }},
+    "copyright_statement": {{ item.data.copyright_statement | jsonify | safe }},
+    "images": {{ item.data.images | jsonify | safe }},
+    "collection": "unstable_archives",
+    "thumbnail": "{{ item.data.thumbnail }}",
+    "content": " ",
+    "permalink": "{{ item.url }}",
+    "lunr_id": {{ loop.index0 }}
+  }{% if not loop.last %},{% endif %}
+{% endfor %}
+]

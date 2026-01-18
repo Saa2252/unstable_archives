@@ -1,0 +1,8 @@
+---
+layout: default
+---
+{% if not show_title == false %}
+  <h2 class='page-title'>{{ title }}</h2>
+{% endif %}
+
+{{ content | safe }}
