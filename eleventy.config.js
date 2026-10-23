@@ -40,7 +40,7 @@ module.exports = function(eleventyConfig) {
   // absolute_url - Most critical filter for URL handling
   eleventyConfig.addFilter("absolute_url", (url) => {
     const baseurl = "/unstable_archives";
-    if (!url) return baseurl + "/";
+    if (!url) return baseurl;
     if (url.startsWith("http")) return url;
     return baseurl + (url.startsWith("/") ? url : "/" + url);
   });
@@ -48,7 +48,7 @@ module.exports = function(eleventyConfig) {
   // relative_url - Same as absolute_url for this project
   eleventyConfig.addFilter("relative_url", (url) => {
     const baseurl = "/unstable_archives";
-    if (!url) return baseurl + "/";
+    if (!url) return baseurl;
     if (url.startsWith("http")) return url;
     return baseurl + (url.startsWith("/") ? url : "/" + url);
   });

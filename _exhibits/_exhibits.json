@@ -1,0 +1,5 @@
+{
+  "layout": "exhibit",
+  "tags": "exhibits",
+  "permalink": "/exhibits/{{ page.fileSlug }}/"
+}

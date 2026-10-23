@@ -1,0 +1,5 @@
+{
+  "layout": "unstable_archives_item",
+  "tags": "unstable_archives",
+  "permalink": "/unstable_archives/{{ page.fileSlug }}/"
+}

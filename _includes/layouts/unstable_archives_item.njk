@@ -25,13 +25,13 @@ show_pagination: true
 
 {% if translation %}
   <div class='translation'>
-    <p>{{ translation }}</p>
+    <p>{{ translation | safe }}</p>
   </div>
 {% endif %}
 
 {% if transcription %}
   <div class='transcription'>
-    <p>{{ transcription }}</p>
+    <p>{{ transcription | safe }}</p>
   </div>
 {% endif %}
 
