@@ -56,7 +56,17 @@ _includes/            Nunjucks partials; layouts/ holds the page layouts
 src/sass/             Stylesheet sources
 img/                  Images, including pre-built IIIF tiles and manifests
 search/index.njk      Generates the ElasticLunr search index
+scripts/render-iiif.js  Renders the IIIF files wax_iiif emits as templates
 ```
+
+### IIIF derivatives
+
+`wax_iiif` wrote the 861 files under `img/derivatives/iiif/` as Jekyll
+templates, with front matter and a Liquid placeholder for the base URL. Eleventy
+copies `img/` through untouched, so `scripts/render-iiif.js` re-renders them
+over the copies after every build (wired to Eleventy's `eleventy.after` event).
+Without it the manifests are invalid JSON and the image viewer silently shows
+nothing. If you regenerate derivatives, that step handles them automatically.
 
 ### URLs
 

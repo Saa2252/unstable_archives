@@ -819,6 +819,7 @@ DEBUG=Eleventy* npx eleventy
 | `_exhibits/_exhibits.json` | Data | Exhibit defaults |
 | `_unstable_archives/_unstable_archives.json` | Data | Archive defaults |
 | `search/index.njk` | Template | Search index |
+| `scripts/render-iiif.js` | Build | Renders wax_iiif's Jekyll-templated IIIF files |
 
 ---
 
@@ -832,7 +833,9 @@ For questions about this migration, refer to the project repository or contact t
 
 Verification compared the Eleventy output against the last Jekyll build
 page-by-page, using the HTML tag profile of each page as the comparison key.
-That surfaced five defects, all now fixed.
+That surfaced five defects. Browser testing of the running site then surfaced
+a sixth and most serious one — the IIIF viewer was dead on every item page.
+All are now fixed.
 
 ### 1. Directory data files were inert (root cause of the URL breakage)
 
@@ -889,6 +892,36 @@ returned `/unstable_archives/`, producing
 `/unstable_archives//unstable_archives/item1/` for every result link and
 thumbnail. The filter no longer appends a trailing slash for empty input.
 
+### 6. Every IIIF derivative file was shipped unrendered
+
+**This broke the deep-zoom viewer on all 52 item pages — the core function of
+the archive — and a page-level HTML comparison could never have caught it.**
+
+`wax_iiif` writes its 861 derivative files (manifests, sequences, canvases,
+annotations, `info.json`) as *Jekyll templates*: each carries `---\nlayout:
+none\n---` front matter and uses `{{ '/' | absolute_url }}` wherever the site's
+base URL belongs. Jekyll rendered them as pages. Eleventy treats `img/` as a
+passthrough copy, so it reproduced them byte-for-byte — front matter and Liquid
+tags intact. The result is not valid JSON, so OpenSeadragon fetched each
+manifest (HTTP 200), failed to parse it, and rendered an empty grey box.
+
+Fixed by `scripts/render-iiif.js`, wired into an `eleventy.after` event in
+`eleventy.config.js` so it runs on every build, including incremental rebuilds
+under `--serve`. It strips the front matter, substitutes the base URL from
+`_data/site.json`, and `JSON.parse`s each result, throwing rather than shipping
+a file the viewer cannot read.
+
+Verified in a browser: item pages now display their scanned images with
+OpenSeadragon's zoom controls.
+
+### 7. `absolute_url` mangled non-HTTP schemes
+
+The filter only passed through URLs beginning `http`, so the footer's
+`mailto:unstablearchives2020@gmail.com` became
+`/unstable_archives/mailto:unstablearchives2020@gmail.com` on all 82 pages. It
+now passes through any scheme and protocol-relative URLs. (Jekyll had the same
+bug; this is a fix rather than a parity restoration.)
+
 ### Intentional difference from the Jekyll output
 
 The Jekyll site rendered a metadata row reading **“Layout:
@@ -912,6 +945,35 @@ between the two builds.
 - Replaced the inherited upstream Wax `README.md`, which still instructed
   readers to run `bundle exec jekyll serve`, with one describing this project
   and the Eleventy workflow.
+- Deleted `assets/styles.scss`, the old Jekyll stylesheet source. It still had
+  front matter and a Liquid tag, and was being published as a stray file; it is
+  superseded by `src/sass/styles.scss`.
+- Added `.claude/launch.json` so the dev server can be started directly.
+
+### Verification method
+
+Page-level comparison alone is not sufficient for this site — it would have
+passed a build whose image viewer was entirely broken. The checks used were:
+
+1. **HTML tag profile** of each page against the last Jekyll build: 82/82 match.
+2. **Compiled CSS**: byte-identical to Jekyll's `styles.css`.
+3. **JSON validity** of all 861 rendered IIIF files, enforced in the build.
+4. **Internal link check** across all 82 pages: 3,305 links resolved to a file
+   on disk, leaving only the two pre-existing missing images noted below.
+5. **Browser testing** of the running site: IIIF viewer, transcription
+   rendering, navigation, and a live search query returning correctly formed
+   result URLs.
+
+### Pre-existing issues, not introduced by the migration
+
+Both are present identically in the Jekyll build and are left as-is, since each
+needs a missing file rather than a code change:
+
+- `img/logo.png` — the favicon referenced by the inherited Wax `head.html` on
+  every page. The file is not in the repository. Either add it, or point the
+  tag at `img/pendant_transparent.png`, which `_data/site.json` already
+  declares as the site logo.
+- `img/wax_workflow.jpg` — linked twice from `pages/about.md`; also absent.
 
 ### Known follow-up
 

@@ -14,6 +14,20 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("img");
 
   // ---------------------------------------------------------------
+  // IIIF DERIVATIVES
+  // ---------------------------------------------------------------
+  // wax_iiif emits its manifests and info.json files as Jekyll templates,
+  // with front matter and a Liquid base-URL placeholder. Passthrough copy
+  // reproduces them verbatim, which is invalid JSON, so re-render them over
+  // the copies once each build finishes. See scripts/render-iiif.js.
+  const renderIiif = require("./scripts/render-iiif.js");
+
+  eleventyConfig.on("eleventy.after", ({ dir }) => {
+    const { rendered } = renderIiif(dir.output);
+    console.log(`[11ty] Rendered ${rendered} IIIF files`);
+  });
+
+  // ---------------------------------------------------------------
   // COLLECTIONS
   // ---------------------------------------------------------------
   eleventyConfig.addCollection("unstable_archives", collection => {
@@ -33,7 +47,9 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addFilter("absolute_url", (url) => {
     const baseurl = "/unstable_archives";
     if (!url) return baseurl;
-    if (url.startsWith("http")) return url;
+    // Absolute URLs, protocol-relative URLs and non-HTTP schemes
+    // (mailto:, tel:) must be left alone.
+    if (/^([a-z][a-z0-9+.-]*:|\/\/)/i.test(url)) return url;
     return baseurl + (url.startsWith("/") ? url : "/" + url);
   });
 
@@ -41,7 +57,9 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addFilter("relative_url", (url) => {
     const baseurl = "/unstable_archives";
     if (!url) return baseurl;
-    if (url.startsWith("http")) return url;
+    // Absolute URLs, protocol-relative URLs and non-HTTP schemes
+    // (mailto:, tel:) must be left alone.
+    if (/^([a-z][a-z0-9+.-]*:|\/\/)/i.test(url)) return url;
     return baseurl + (url.startsWith("/") ? url : "/" + url);
   });
 
