@@ -970,10 +970,13 @@ Both are present identically in the Jekyll build and are left as-is, since each
 needs a missing file rather than a code change:
 
 - `img/logo.png` — the favicon referenced by the inherited Wax `head.html` on
-  every page. The file is not in the repository. Either add it, or point the
-  tag at `img/pendant_transparent.png`, which `_data/site.json` already
-  declares as the site logo.
-- `img/wax_workflow.jpg` — linked twice from `pages/about.md`; also absent.
+  every page; the file is not in the repository. **Fixed**: `head.njk` now uses
+  `site.logo`, which `_data/site.json` already points at the real
+  `img/pendant_transparent.png`.
+- `img/wax_workflow.jpg` — linked twice from `pages/about.md`. The file is not
+  in the repository and no copy exists in any sibling checkout, so this one
+  needs the image itself rather than a code change. It is the only broken
+  internal link left in the build.
 
 ### Known follow-up
 
