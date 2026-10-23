@@ -4,7 +4,6 @@ _site
 # Node.js
 node_modules
 npm-debug.log
-package-lock.json
 
 # System files
 .DS_Store
@@ -12,13 +11,6 @@ package-lock.json
 *.swp
 *.swo
 *~
-
-# Ruby (legacy - can be removed after migration verified)
-.sass-cache
-.jekyll-metadata
-.jekyll-cache
-Gemfile.lock
-wax_tasks
 
 # Environment files
 .env

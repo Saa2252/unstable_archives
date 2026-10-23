@@ -1,131 +1,87 @@
-# minicomp/wax 🐝
+# Unstable Archives
 
-[![Gem Version](https://badge.fury.io/rb/wax_theme.svg)](https://badge.fury.io/rb/wax_tasks)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
-[![CI:Test](https://github.com/minicomp/wax/workflows/ci:test/badge.svg)](https://github.com/minicomp/wax/actions?query=workflow%3Aci%3Atest)
-[![Depfu](https://badges.depfu.com/badges/9d4da973f2cd2680c11ca34738c2dfb2/overview.svg)](https://depfu.com/github/minicomp/wax?project_id=10550)
-[![Gem Downloads](https://img.shields.io/gem/dt/wax_theme.svg?color=046d0b)](https://badge.fury.io/rb/wax_theme)
-[![Join the chat the minicomp-wax channel of the Code4Lib Slack](https://img.shields.io/badge/Slack-%23minicomp--wax-brightgreen.svg)](https://docs.google.com/forms/d/e/1FAIpQLSeD77mBp0Y13mFePF8UmDwFrlbxNx3VttEjz_3dgglJeK-Zbg/viewform?c=0&w=1)
-![License](https://img.shields.io/github/license/minicomp/wax_tasks.svg?color=c6a1e0)
+__Gender & Empire in South Asia__ — a digital exhibition of archival material
+documenting the life of Elizabeth Sharaf un-Nisa and the Ducarel family in
+late-eighteenth-century India and England.
 
+By Megan Eaton Robb. Live at
+<https://unstable-archives.github.io/unstable_archives/>.
 
+The site presents 52 archival objects — letters, legal documents, a penmanship
+book, jewellery and textiles — with IIIF deep-zoom viewers, transcriptions and
+translations, a faceted browse gallery, client-side search, and eight
+interpretive exhibits.
 
+## Prerequisites
 
+Node.js 18 or newer. That's all — image derivatives and IIIF manifests are
+pre-built and committed under `img/`.
 
-__Wax is an extensible workflow for producing scholarly exhibitions with minimal computing principles.__<br>
-It's comprised of: __a few Ruby gems__ for processing image data and associated metadata ([wax_tasks](https://github.com/minicomp/wax_tasks/), [wax_iiif](https://github.com/minicomp/wax_iiif/)), __a Jekyll theme__ ([wax_theme](https://github.com/minicomp/wax/)), and (hopefully soon!) a lot of __documentation and recipes__ for creating, deploying, and maintaining digital exhibitions.
-
-
-- [Prerequisites](#Prerequisites)
-- [Getting Started](#Getting-Started)
-- [Using Docker](#Using-Docker)
-- [Contributing](#Contributing)
-
-<br>
-
-<a href="https://minicomp.github.io/wax/">
-  <img src="https://raw.githubusercontent.com/minicomp/wiki/main/src/assets/wax_screen.gif?raw=true"/>
-</a>
-
-<br>
-
-# Prerequisites
-
-
-You'll need `git` and `ruby >= 2.4` with `bundler` installed.
-These dependencies can either be installed natively on your system or within a [Docker environment](#Using-Docker). For instructions, check the Wiki's [Setting up your system page](https://minicomp.github.io/wiki/wax/setting-up-your-system/).
-
-Check your versions with:
+## Getting started
 
 ```sh
-ruby -v
+npm install
+npm run serve
 ```
 
-``` sh
-bundler -v
+Then open the localhost URL the terminal prints. Note that the site is built
+with a path prefix, so the homepage lives at `/unstable_archives/`.
+
+## Commands
+
+| Command | What it does |
+|---|---|
+| `npm run serve` | Build and serve with live reload |
+| `npm run build` | Production build into `_site/` |
+| `npm run watch` | Watch Sass and templates in parallel |
+| `npm run clean` | Delete `_site/` |
+
+`npm run build` compiles Sass first, then runs Eleventy. Running `eleventy`
+alone will not refresh the stylesheet.
+
+## How it is put together
+
+Built with [Eleventy](https://www.11ty.dev/) and Nunjucks templates, migrated
+from the Jekyll-based [Wax](https://github.com/minicomp/wax) theme in January
+2026. See [MIGRATION_DOC.md](MIGRATION_DOC.md) for the full record.
+
+```
+eleventy.config.js    Build config, collections, and Liquid-compatible filters
+_data/site.json       Site title, navigation, footer, search config
+_data/*.csv           Item metadata, loaded by unstable_archives_data.js
+_unstable_archives/   One Markdown file per archival object (front matter = metadata)
+_exhibits/            Interpretive essays
+pages/                Standalone content pages
+_includes/            Nunjucks partials; layouts/ holds the page layouts
+src/sass/             Stylesheet sources
+img/                  Images, including pre-built IIIF tiles and manifests
+search/index.njk      Generates the ElasticLunr search index
 ```
 
-To process images, you will also need to have ImageMagick and Ghostscript installed and functional. You can check to see if you have ImageMagick by running:
+### URLs
+
+Archival items are served at `/unstable_archives/unstable_archives/<pid>/` and
+exhibits at `/unstable_archives/exhibits/<name>/`. These paths are set by the
+`permalink` keys in `_unstable_archives/_unstable_archives.json` and
+`_exhibits/_exhibits.json`. They are load-bearing: published citations and
+in-text links across the exhibits point at them, so don't change them.
+
+### Adding an item
+
+Add a row to `_data/unstable_archives.csv` and a matching Markdown file in
+`_unstable_archives/` whose front matter carries the metadata fields. Items are
+ordered by their `order` field. Fields may contain inline HTML; `transcription`
+and `translation` are rendered unescaped.
+
+## Docker
 
 ```sh
-convert -version
+docker build -t unstable-archives .
+docker run -p 8080:8080 unstable-archives
 ```
 
-... and check Ghostscript with:
-``` sh
-gs -version
-```
+## License
 
-Vips will soon replace ImageMagick for Wax's image processing. If you're ahead of the curve, you can check your version with
-
-``` sh
-vips -version
-```
-
-# Getting Started
-
-__There are a few ways to get started with Wax, depending on your needs.__ Copyin the demo template is suggested for new users so you can see how a full Wax site would work. __Advanced Jekyllers__ can start from a clean Jekyll install. To start with the demo:
-
-1. Log into your [GitHub account](https://github.com/). (Or sign up if you don't have one!)
-
-2. Head to the [Wax demo page](https://github.com/) and click **"Use this Template"** button. It will prompt you to create a copy of the repository in your own account. You should name it after the collection or exhibition you'll make, since this name will inform your free URL for the project with GitHub. For this example, our repository is called **"my-wax-site"**.
-
-3. On your own, new Wax repository page, click the Green **"Code"** button and copy the URL it provides to your clipboard, e.g,
-  ```sh
-  git@github.com:mnyrop/my-wax-site.git
-  ```
-
-4. Open your Terminal/Shell application and change directory into where you'd like to work on your project, e.g., your Desktop:
-  ```sh
-  cd ~/Desktop
-  ```
-
-5. Run the `git clone` command plus the link you copied on your clipboard in one line, e.g.,
-  ```sh
-  git clone git@github.com:mnyrop/my-wax-site.git
-  ```
-
-6. When the clone is complete, change directory into your newly cloned project folder, in our case:
-  ```sh
-  cd my-wax-site
-  ```
-
-7. Install the project-specific Ruby dependencies by running the command
-  ```sh
-  bundle install
-  ```
-
-8. Run the demo site:
-  ```sh
-  bundle exec jekyll serve
-  ```
-
-After the last step, the terminal will provide you with a localhost URL for you to see your local copy of the site on your browser. This is the template site you will make changes to in order to make your own exhibition. For more, check out the [Minicomp/Wax Wiki](https://minicomp.github.io/wiki/wax/).
-
-
-# Using Docker
-
-To use Wax in a container, make sure you are familiar with Docker and have [Docker installed](https://docs.docker.com/get-docker/).
-
-Run the "Getting Started" steps 1-6 above to copy and `cd` into the repo.  
-
-Next, build the `minicomp/wax` base image:
-```
-docker build -t minicomp/wax .
-```
-
-You will run all of the Wax tasks and commands within an interactive bash container, which you can create and access by running:
-```
-docker run -it --rm -v "$PWD":/wax --name wax -p 4000:4000 minicomp/wax bash
-```
-
-To serve the site, you can run the following command in the guest container and view it in your host browser:
-```
-bundle exec jekyll serve --host 0.0.0.0
-```
-
-You can exit the container at any time with `$ exit`, which will automatically stop and remove the container.
-
-# Contributing
-
-We welcome contributions to Wax, including bug reports and feature requests (submitted as [Issues](https://github.com/minicomp/wax/issues)), code contributions (submitted as [Pull Requests](https://github.com/minicomp/wax/pulls)), and documentation updates (submitted however!) Not sure where to start? Feel free to get in touch via [GitHub issue](https://github.com/minicomp/wax/issues) or grab an invite to join the conversation on the `#minicomp-wax` channel of the [Code4Lib Slack](https://docs.google.com/forms/d/e/1FAIpQLSeD77mBp0Y13mFePF8UmDwFrlbxNx3VttEjz_3dgglJeK-Zbg/viewform?c=0&w=1).
+Code is MIT licensed (see [LICENSE.txt](LICENSE.txt)). Archival images and
+transcriptions carry their own rights statements, recorded per item in the
+`copyright_statement` and `terms_use` metadata fields.

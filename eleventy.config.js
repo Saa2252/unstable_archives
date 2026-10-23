@@ -4,14 +4,6 @@ module.exports = function(eleventyConfig) {
   // ---------------------------------------------------------------
   eleventyConfig.ignores.add("README.md");
   eleventyConfig.ignores.add("MIGRATION_DOC.md");
-  eleventyConfig.ignores.add("Gemfile");
-  eleventyConfig.ignores.add("Rakefile");
-  eleventyConfig.ignores.add("wax_theme.gemspec");
-  eleventyConfig.ignores.add("_config.yml");
-  eleventyConfig.ignores.add("vendor/**");
-  eleventyConfig.ignores.add("spec/**");
-  eleventyConfig.ignores.add("_sass/**");
-  eleventyConfig.ignores.add("_layouts/**");
   eleventyConfig.ignores.add("src/**");
   eleventyConfig.ignores.add("_data/raw_images/**");
 

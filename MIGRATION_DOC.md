@@ -1,5 +1,11 @@
 # Jekyll to Eleventy Migration Documentation
 
+> **Status: complete.** The Jekyll toolchain has been removed and the Eleventy
+> build is verified against the final Jekyll output — all 82 pages render an
+> identical HTML tag profile and the compiled stylesheet is byte-identical.
+> See [Completion Report](#completion-report) for the defects found during
+> verification and how they were fixed.
+
 ## Overview
 
 This document details the migration of the Unstable Archives project from Jekyll (Ruby-based static site generator) to Eleventy (Node.js-based static site generator). The migration preserves the exact look, feel, and functionality of the original site while modernizing the build toolchain.
@@ -207,8 +213,8 @@ module.exports = function() {
 | File | Purpose |
 |------|---------|
 | `pages/pages.json` | Sets default layout and permalink for pages |
-| `_exhibits/exhibits.json` | Sets default layout and tags for exhibits |
-| `_unstable_archives/unstable_archives.json` | Sets default layout and tags for archive items |
+| `_exhibits/_exhibits.json` | Sets default layout and tags for exhibits |
+| `_unstable_archives/_unstable_archives.json` | Sets default layout and tags for archive items |
 
 ### 9. `search/index.njk`
 **Purpose:** Generates the search index JSON for ElasticLunr
@@ -294,9 +300,10 @@ package-lock.json
 
 ---
 
-## Files to Delete After Verification
+## Files Deleted After Verification
 
-After verifying the Eleventy build matches the Jekyll output, remove these files:
+~~Verification is complete and these files have been removed.~~ The list is kept
+for the record:
 
 ### Ruby/Jekyll Files
 - `Gemfile`
@@ -585,11 +592,13 @@ eleventyConfig.addCollection("unstable_archives", collection => {
 ### Directory Data Files
 Instead of configuring layouts in the main config, use directory data files:
 
-**`_unstable_archives/unstable_archives.json`:**
+**`_unstable_archives/_unstable_archives.json`** (the file must be named after
+its directory, or Eleventy silently ignores it):
 ```json
 {
   "layout": "unstable_archives_item",
-  "tags": "unstable_archives"
+  "tags": "unstable_archives",
+  "permalink": "/unstable_archives/{{ page.fileSlug }}/"
 }
 ```
 
@@ -807,8 +816,8 @@ DEBUG=Eleventy* npx eleventy
 | `src/sass/_wax.scss` | SCSS | Theme styles |
 | `src/sass/_bootstrap.scss` | SCSS | Bootstrap |
 | `pages/pages.json` | Data | Page defaults |
-| `_exhibits/exhibits.json` | Data | Exhibit defaults |
-| `_unstable_archives/unstable_archives.json` | Data | Archive defaults |
+| `_exhibits/_exhibits.json` | Data | Exhibit defaults |
+| `_unstable_archives/_unstable_archives.json` | Data | Archive defaults |
 | `search/index.njk` | Template | Search index |
 
 ---
@@ -816,3 +825,100 @@ DEBUG=Eleventy* npx eleventy
 ## Contact
 
 For questions about this migration, refer to the project repository or contact the maintainers.
+
+---
+
+## Completion Report
+
+Verification compared the Eleventy output against the last Jekyll build
+page-by-page, using the HTML tag profile of each page as the comparison key.
+That surfaced five defects, all now fixed.
+
+### 1. Directory data files were inert (root cause of the URL breakage)
+
+Eleventy requires a directory data file to be **named after its directory**.
+`_unstable_archives/unstable_archives.json` and `_exhibits/exhibits.json` were
+therefore never read; they are now `_unstable_archives/_unstable_archives.json`
+and `_exhibits/_exhibits.json`.
+
+This had gone unnoticed because every item already carried
+`layout: unstable_archives_item` in its own front matter (written there by the
+Wax CSV ingest), and the collections are defined by glob in
+`eleventy.config.js` rather than by the `tags` key — so the only visible symptom
+was the permalink problem below.
+
+### 2. Collection items built to the wrong URLs
+
+With no effective permalink, Eleventy fell back to the source path and wrote
+items to `/_unstable_archives/item1/` — leaking the underscore of the source
+directory. The original Jekyll URLs are
+`/unstable_archives/unstable_archives/<pid>/`, confirmed by eleven hardcoded
+links inside the exhibit essays themselves.
+
+Fixed by adding `permalink` to both directory data files:
+
+```json
+{ "permalink": "/unstable_archives/{{ page.fileSlug }}/" }
+{ "permalink": "/exhibits/{{ page.fileSlug }}/" }
+```
+
+These URLs are load-bearing — published citations point at them — so they are
+now pinned by configuration rather than left to Eleventy's default.
+
+### 3. `_exhibits/attire.md` was orphaned
+
+Its front matter had an empty `permalink:` key, which overrode the directory
+default and sent the page to `/_exhibits/attire/`, where nothing linked to it.
+Set to `/exhibits/attire/`.
+
+### 4. Transcriptions and translations were HTML-escaped
+
+Liquid does not autoescape; Nunjucks does. Four items carry scholarly HTML
+markup (`<br>`, `<h1>`, `<sup>`, `<add>`, `<underline>`) inside their
+`transcription` and `translation` fields, and it was rendering as literal
+visible text — item1 alone lost 311 line breaks. Both fields now use `| safe`
+in `_includes/layouts/unstable_archives_item.njk`.
+
+Only these two fields contain HTML, so no other field needs the filter.
+
+### 5. Double slashes in every search result link
+
+`search-ui.js` concatenates `url + item.permalink`. Jekyll's `absolute_url('')`
+returned `/unstable_archives` with no trailing slash; the replacement filter
+returned `/unstable_archives/`, producing
+`/unstable_archives//unstable_archives/item1/` for every result link and
+thumbnail. The filter no longer appends a trailing slash for empty input.
+
+### Intentional difference from the Jekyll output
+
+The Jekyll site rendered a metadata row reading **“Layout:
+unstable_archives_item”** on all 52 item pages. The CSV's `layout` column had
+been repurposed by the Wax ingest to hold the Jekyll layout name, so the item
+template was printing the template's own filename as though it were a
+description of the manuscript's layout. No archival data is lost by dropping it
+— the column contains `unstable_archives_item` for all 52 rows — and the row is
+omitted from the Nunjucks template. This is the sole remaining difference
+between the two builds.
+
+### Other changes made during cleanup
+
+- `git init` plus a pre-migration snapshot commit; the project previously had no
+  version control.
+- Removed the stale `ignores.add()` entries in `eleventy.config.js` that
+  referenced now-deleted Jekyll files.
+- Dropped the Ruby section from `.gitignore`, and stopped ignoring
+  `package-lock.json` so builds are reproducible.
+- `Dockerfile` now runs `npm ci` rather than `npm install`.
+- Replaced the inherited upstream Wax `README.md`, which still instructed
+  readers to run `bundle exec jekyll serve`, with one describing this project
+  and the Eleventy workflow.
+
+### Known follow-up
+
+`src/sass/` still uses Sass `@import`, which is deprecated and will be removed
+in Dart Sass 3. Migrating to `@use` is not a mechanical change here:
+`styles.scss` defines variables that `_wax.scss` consumes, which `@use` does not
+allow without restructuring those into `!default` declarations and a
+`@use ... with (...)` call. Deferred deliberately — the current output is
+byte-identical to Jekyll's, and this refactor risks silent visual regressions
+across 150KB of CSS. Pin `sass` to a 1.x release until it is done.
