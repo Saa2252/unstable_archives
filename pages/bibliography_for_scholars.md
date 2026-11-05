@@ -5,7 +5,7 @@ author: Compiled by Emma Kaneira, under the supervision of Megan Eaton Robb
 publish_date: 2023-08-18
 permalink: /bibliography_for_scholars/
 ---
-<p class="hang">“A Calcutta Benefactress.” <i>Bengal Past and Present: Journal of the Calcutta Historical Society I. Calcutta Historical Society, July-December 1907, 137-47. Cited in Ghosh, 2006.</p>
+<p class="hang">“A Calcutta Benefactress.” <i>Bengal Past and Present: Journal of the Calcutta Historical Society</i> I. Calcutta Historical Society, July-December 1907, 137-47. Cited in Ghosh, 2006.</p>
 <p class="hang">Abel, Evelyn. <i>The Anglo-Indian Community: Survival in India</i>. Delhi: Chanakya Publications, 1988. Cited in Hawes, 1996.</p>
 <p class="hang">Alavi, Seema. “The Eurasian ‘Other’ the British Empire : the case of James Skinner (1802-1840).” Unpublished. Cited in Ghosh, 2006.</p>
 <p class="hang">ʻAli, Karam. “Muzaffarnamah.”  <i>Bengal Nawābs</i>. Translated by Jadu Nath Sarkar. Calcutta: 1985. Accessed via Hathitrust. Cited in Robb, 2023.</p>
@@ -17,12 +17,12 @@ permalink: /bibliography_for_scholars/
 <p class="hang">Archer, Mildred and Toby Falk. <i>The Passionate Quest – The Fraser Brothers in India</i>. Alfalak/Scorpion Publishing Ltd., 1989. Cited in Das, 2005.</p>
 <p class="hang">Arondekar, Anjali. <i>For the Record: On Sexuality and the Colonial Archive in India</i>. Durham, NC: Duke University Press, 2009. https://doi-org.ezproxy.cul.columbia.edu/10.1215
 /9780822391029. Cited in Robb, 2023.</p>
-<p class="hang">Āzādāl-Husaini. “Naubahār-i-Murshid Quli Khāni”  <i>Bengal Nawābs</i>. Translated by Jadu Nath Sarkar. Calcutta: 1985. Accessed via Hathitrust. Cited in Robb, 2023.
+<p class="hang">Āzādāl-Husaini. “Naubahār-i-Murshid Quli Khāni”  <i>Bengal Nawābs</i>. Translated by Jadu Nath Sarkar. Calcutta: 1985. Accessed via Hathitrust. Cited in Robb, 2023.</p>
 <p class="hang">Ballhatchet, Kenneth. <i>Race, Sex, and Class Under the Raj: Imperial Attitudes and Policies and their Critics, 1793-1905</i>. Great Britain: Weidenfeld & Nicolson, 1980.</p>
 <p class="hang">Banerji, Brajendranth. <i>Begam Samru</i>. Calcutta: M.C. Sarkar and Sons, 1925. Cited in Ghosh, 2006.</p>
 <p class="hang">Bayly, C. A. <i>Empire and Information: Intelligence Gathering and Social Communication in India, 1780-1870</i>. Cambridge: Cambridge University Press, 1996. Cited in Ghosh, 2006.</p>
 <p class="hang"><i>Bengal Past & Present</i> 46, 1933. Cited in Robb, 2023.</p>
-<p class="hang"><i>Bengal Past and Present: Journal of the Calcutta Historical Society</i>. Vol. LII. Pt. 1, Calcutta Historical Society</i>, 18-22. Cited in Ghosh, 2006.</p>
+<p class="hang"><i>Bengal Past and Present: Journal of the Calcutta Historical Society</i>. Vol. LII. Pt. 1, Calcutta Historical Society, 18-22. Cited in Ghosh, 2006.</p>
 <p class="hang"><i>Bengal Past and Present: Journal of the Calcutta Historical Society</i>. Vol. XLIII. Calcutta Historical Society, 150. Cited in Ghosh, 2006.</p>
 <p class="hang"><i>Bengal Past and Present: Journal of the Calcutta Historical Society</i>. Vol. XLVI. Calcutta Historical Society, 1933, 93, 94. Cited in Ghosh, 2006.</p>
 <p class="hang"><i>Bengal Past and Present: Journal of the Calcutta Historical Society</i>. Vol. XXVI. Calcutta Historical Society, 193-22. Cited in Ghosh, 2006.</p>
@@ -35,7 +35,7 @@ permalink: /bibliography_for_scholars/
 <p class="hang">Collingham, E. M. <i>Imperial Bodies: The Physical Experience of the Raj, c.1800-1947</i>. Cambridge: Polity Press, 2001.</p>
 <p class="hang">Compton, Herbert. <i>A Particular Account of the European Military Adventures of Hindustan, from 1784 to 1803</i>. Karachi: Oxford University Press, 1976 (reprint). Cited in Ghosh, 2006.</p>
 <p class="hang">Cotton, J.J. “George Chinnery, artist.” <i>Bengal Past and Present: Journal of the Calcutta Historical Society</i> XXVII. Pt. II, ser. no. 54, Calcutta Historical Society, April-June 1924, 131-55. Cited in Hawes, 1996. Cited in Ghosh, 2006.</p>
-<p class="hang">Dalrymple, William. <i>City of Djinns</i>. London: Flamingo, 1994. Cited in Das, 2005.
+<p class="hang">Dalrymple, William. <i>City of Djinns</i>. London: Flamingo, 1994. Cited in Das, 2005.</p>
 <p class="hang">Dalrymple, William. <i>White Mughals: The Case of James Achilles Kirkpatrick and Khair un-Nissa</i>. London: Flamingo, 2002. Cited in Robb, 2023.</p>
 <p class="hang">Dalrymple, William. “White Mughals.” <i>Unfamiliar Relations: Family and History in South Asia</i>. Indrani Chatterjee ed. New Brunswick: Rutgers University Press, 2004, 122-160.</p>
 <p class="hang">Das, Suribhi et al. “Sahibs or Nabobs? Delhi: 1803 - 1856.” Seminar, November 9, 2005.file:///C:/Users/emmak/Downloads/Sahibs_or_Nabobs_Delhi_103_1856.pdf.</p>
@@ -64,7 +64,7 @@ permalink: /bibliography_for_scholars/
 <p class="hang">Ḵẖān, Karam ʻAlī, Shāʼistah. <i>Tārīḵẖ-i Bangāl va Bihār sadah-ʾihīzhdahum: Muẓaffarnāmah</i>. Patna: 1992, 239–40. Accessed via Hathitrust. Cited in Robb, 2023.</p>
 <p class="hang">Kitson, Peter J. ed. <i>Theories of Race</i>. London: 1999. Cited in Robb, 2023.</p>
 <p class="hang">Lall, John. Begum Samru: Fading Portrait in a Gilded Frame. New Delhi: Roli Books, 1997. Cited in Ghosh, 2006.</p>
-<p class="hang"><p class="hang">Llewlleyn-Jones, Rosie. <i>A Very Ingenious Man: Claude Martin in Early Colonial India</i>. Delhi: Oxford University Press, 1992. Cited in Ghosh, 2006.</p>
+<p class="hang">Llewlleyn-Jones, Rosie. <i>A Very Ingenious Man: Claude Martin in Early Colonial India</i>. Delhi: Oxford University Press, 1992. Cited in Ghosh, 2006.</p>
 <p class="hang">Long, James. <i>Calcutta and Its Neighborhood: History of People and Localities from 1690 to 1837</i>. Indian Publications, 1974. Cited in Robb, 1998.</p>
 <p class="hang">Losty, J.P. <i>Calcutta: City of Palaces, a Survey of the City in the Days of the East India Company, 1690-1858</i>. London: British Library, 1990. Cited in Ghosh, 2006.</p>
 <p class="hang">Love, Henry Davidson. <i>Vestiges of Old Madras, 1640-1800: Traced from the East India Company’s Records Preserved at Fort St. George and the India Office, and from Other Sources</i>. Vol. 2. London: Murray, 1913. Cited in Hawes, 1996.</p>
@@ -86,7 +86,7 @@ permalink: /bibliography_for_scholars/
 <p class="hang">Sen, Indrani. “Devoted Wife/Sensuous Bibi: Colonial Constructions of the Indian Woman, 1860-1900.” <i>Indian Journal of Gender Studies</i> 8, March 2001: accessed June 1, 2023, https://dx.doi.org/10.1177/097152150100800101</p>
 <p class="hang">Sharma, M.N. <i>The Life and Times of Begam Samru of Sardhana</i>. Sahibabad: 1985. Cited in Ghosh, 2006.</p>
 <p class="hang">Speirs, Malcolm. “British Resident, Gwalior.” <i>The Wazikadars of Awadh</i>. Delhi: 2008, xl–xli. Cited in Anderson, 2011. Cited in Robb, 2023.</p>
-<p class="hang">Spivak, Gayatri. “The Rani of Sirmur: An Essay in Reading the Archives.” <i>History and Theory</i> 24, no. 3, October 1985, 247–72. Cited in Robb, 2023.
+<p class="hang">Spivak, Gayatri. “The Rani of Sirmur: An Essay in Reading the Archives.” <i>History and Theory</i> 24, no. 3, October 1985, 247–72. Cited in Robb, 2023.</p>
 <p class="hang">Sreenivas, Mytheli. <i>Wives, Widows, and Concubines: The Conjugal Family Ideal in Colonial India</i>. Bloomington: Indiana University Press, 2008.</p>
 <p class="hang">St. Genis. Poiters: 1973. Cited in <i>Bengal Past and Present: Journal of the Calcutta Historical Society</i>. Vol. XLVI. Calcutta Historical Society, 1933, 91. Cited in Ghosh, 2006.</p>
 <p class="hang">Stark, Herbert Alick. <i>Hostages to India, Or The Life Story of the Anglo-Indian Race</i>. Calcutta: The Calcutta Fine Art College, 1926. Cited in Carton, 2012.</p>
@@ -94,7 +94,7 @@ permalink: /bibliography_for_scholars/
 <p class="hang">Strobel, Margaret. <i>Gender, Sex and Empire</i>. Washington, DC: American History Association, 1993. Cited in Sen, 2001.</p>
 <p class="hang">Stuart, A.F. “'Some Notes on the Position of Early Eurasians.” <i>The Asiatic Quarterly Review</i>, July 1913, 94. Cited in Hawes, 1996.</p>
 <p class="hang">Sykes, John. “Sykes, Sir Francis, First Baronet.” <i>Oxford Dictionary of National Biography</i>, January 8, 2015. https://doi.org/10.1093/ref:odnb/64747. Cited in Robb, 2023.</p>
-<p class="hang">Teltscher, Kate. <i>India Inscribed: European and British Writing on India 1600-1800</i>. New York: Oxford University Press, 1995. Cited in Ghosh, 2006.v
+<p class="hang">Teltscher, Kate. <i>India Inscribed: European and British Writing on India 1600-1800</i>. New York: Oxford University Press, 1995. Cited in Ghosh, 2006.v</p>
 <p class="hang"><i>The Āʼīn-i Akbarī</i> [by] Abūʼl-Fazl ʻAllāmī, 2nd ed. S. L. Goomer ed. Translated by H. Blochmann, Delhi: 1965  Cited in Robb, 2023.</p>
 <p class="hang">“The Begum of Sardhana.” In <i>Calcutta Review. April 1894</i>. 310-26. Cited in Ghosh, 2006.</p>
 <p class="hang">“The Bengal Military Orphan Society.” In <i>Calcutta Review</i> 44. 8, 1867, 151-82, 165. Cited in Ghosh, 2006.</p>

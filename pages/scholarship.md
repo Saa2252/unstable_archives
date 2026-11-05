@@ -28,7 +28,7 @@ permalink: /scholarship/
 <p class="hang">Leong, E.  “Collecting Knowledge for the Family: Recipes, Gender and Practical Knowledge in the Early Modern English Household.” <i>Centaurus; International Magazine of the History of Science and Medicine</i> 55 (2) (2013): 81–103.</p>
 <p class="hang">Mishra, Ratneshwar. <i>History of Purnea, c. 1772–1793</i> (Calcutta: India Book Exchange, 1978).</p>
 <p class="hang">Moran, Arik. “‘The Rani of Sirmur’ Revisited: Sati and Sovereignty in Theory and Practice,” <i>Modern Asian Studies</i> 49, no. 2 (2015): 302–335.</p>
-O’Hanlon, Rosalind.“Recovering the Subject: Subaltern Studies and Histories of Resistance in Colonial South Asia.” <i>Modern Asian Studies</i> vol. 22, no. 1 (1988).</p>
+<p class="hang">O’Hanlon, Rosalind.“Recovering the Subject: Subaltern Studies and Histories of Resistance in Colonial South Asia.” <i>Modern Asian Studies</i> vol. 22, no. 1 (1988).</p>
 <p class="hang">Ong, Aihwa. “Cultural Citizenship as Subject Making: Immigrants Negotiate Racial and Cultural Boundaries in the United States,” <i>Cultural Anthropology</i> 37 (1996).</p>
 <p class="hang">Prasad, Pratima. <i>Colonialism, Race, and the French Romantic Imagination</i> (London: Routledge, 2009).</p>
 <p class="hang">Price, Kenneth. “Edition, Project, Database, Archive, Thematic Research Collection: What’s in a Name?” <i>Digital Humanities Quarterly</i> 3:3 (Summer 2009).</p>
