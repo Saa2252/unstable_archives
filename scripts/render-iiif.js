@@ -33,7 +33,15 @@ function* walk(dir) {
 }
 
 module.exports = function renderIiif(outputDir) {
-  const { baseurl } = require(path.join(ROOT, "_data", "site.json"));
+  const site = require(path.join(ROOT, "_data", "site.json"));
+  // wax_iiif's placeholder is Jekyll's `absolute_url`, which resolves to
+  // `site.url + site.baseurl + "/"` -- a full URL, not a path. IIIF identifiers
+  // are meant to be dereferenceable, and the archive is destined for Penn's
+  // OPenn, so an external consumer needs the host. Mirrors eleventy.config.js:
+  // SITE_URL when set, otherwise _data/site.json.
+  const host = (process.env.SITE_URL !== undefined ? process.env.SITE_URL : site.url)
+    .replace(/\/+$/, "");
+  const baseurl = host + site.baseurl;
   const output = path.join(outputDir, "img");
 
   let rendered = 0;
