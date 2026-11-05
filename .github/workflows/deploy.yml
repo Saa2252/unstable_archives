@@ -50,13 +50,19 @@ jobs:
 
       - run: npm ci
 
+      # Tells the build which host it is publishing to, so a fork previews
+      # against its own Pages domain instead of writing the upstream project's
+      # URL into every link. Falls back to _data/site.json when unset.
+      - uses: actions/configure-pages@v5
+        id: pages
+
       - name: Build site
         run: npm run build
+        env:
+          SITE_URL: ${{ steps.pages.outputs.origin }}
 
       - name: Check build
         run: npm run check
-
-      - uses: actions/configure-pages@v5
 
       - uses: actions/upload-pages-artifact@v3
         with:
