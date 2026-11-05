@@ -116,7 +116,54 @@ module.exports = function(eleventyConfig) {
   // date_to_xmlschema - Convert date to ISO 8601 format
   eleventyConfig.addFilter("date_to_xmlschema", (date) => {
     if (!date) return "";
-    return new Date(date).toISOString();
+    const d = toDate(date);
+    return Number.isNaN(d.getTime()) ? "" : d.toISOString();
+  });
+
+  // date - Liquid's strftime-style date filter. The exhibit layout uses
+  // `date: "%A, %B %d, %Y"` to print e.g. "Tuesday, August 10, 2021"; without
+  // the weekday the published pages read differently from the Jekyll site.
+  // Dates are formatted in UTC so a build machine's timezone cannot shift a
+  // bare `2021-08-10` back onto the previous day.
+  // Some front matter writes unpadded dates (`2023-8-17`, `2021-7-20`). YAML
+  // does not recognise those as dates, so they arrive as strings, and
+  // `new Date("2023-8-17")` parses in the BUILD MACHINE's local timezone --
+  // which then reads back a day earlier anywhere east of UTC. Parse date-only
+  // values as UTC so the published date is the one the author typed.
+  const DATE_ONLY = /^(\d{4})-(\d{1,2})-(\d{1,2})$/;
+  const toDate = (value) => {
+    if (value instanceof Date) return value;
+    const match = DATE_ONLY.exec(String(value).trim());
+    if (match) {
+      return new Date(Date.UTC(Number(match[1]), Number(match[2]) - 1, Number(match[3])));
+    }
+    return new Date(value);
+  };
+
+  const DAY_NAMES = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  const MONTH_NAMES = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"];
+
+  eleventyConfig.addFilter("date", (value, format) => {
+    if (!value) return "";
+    const d = toDate(value);
+    if (Number.isNaN(d.getTime())) return "";
+    const pad = (n) => String(n).padStart(2, "0");
+    const tokens = {
+      "%A": DAY_NAMES[d.getUTCDay()],
+      "%a": DAY_NAMES[d.getUTCDay()].slice(0, 3),
+      "%B": MONTH_NAMES[d.getUTCMonth()],
+      "%b": MONTH_NAMES[d.getUTCMonth()].slice(0, 3),
+      "%d": pad(d.getUTCDate()),
+      "%e": String(d.getUTCDate()),
+      "%m": pad(d.getUTCMonth() + 1),
+      "%Y": String(d.getUTCFullYear()),
+      "%y": pad(d.getUTCFullYear() % 100),
+      "%H": pad(d.getUTCHours()),
+      "%M": pad(d.getUTCMinutes()),
+      "%S": pad(d.getUTCSeconds()),
+    };
+    return String(format || "%Y-%m-%d").replace(/%[A-Za-z]/g, (t) => (t in tokens ? tokens[t] : t));
   });
 
   // date_to_string - Format date for display

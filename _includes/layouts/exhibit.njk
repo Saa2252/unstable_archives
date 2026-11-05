@@ -7,7 +7,7 @@ layout: default
   <h3 class='exhibit-author'>{{ author }}</h3>
   <p class='exhibit-date'>Published on
     <time datetime='{{ publish_date | date_to_xmlschema }}'>
-    {{ publish_date | date_to_string }}
+    {{ publish_date | date("%A, %B %d, %Y") }}
     </time>
   </p>
 </div>
