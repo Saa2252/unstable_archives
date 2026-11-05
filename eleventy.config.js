@@ -35,32 +35,56 @@ module.exports = function(eleventyConfig) {
       .sort((a, b) => (a.data.order || 0) - (b.data.order || 0));
   });
 
+  // Jekyll orders a collection alphabetically by filename. Eleventy orders by
+  // date, which put Attire last instead of first on the exhibits index (and
+  // would reshuffle the list again whenever a file was touched).
   eleventyConfig.addCollection("exhibits", collection => {
-    return collection.getFilteredByGlob("_exhibits/*.md");
+    return collection.getFilteredByGlob("_exhibits/*.md")
+      .sort((a, b) => a.inputPath.localeCompare(b.inputPath));
   });
 
   // ---------------------------------------------------------------
   // CUSTOM FILTERS - Match Jekyll/Liquid behavior
   // ---------------------------------------------------------------
 
-  // absolute_url - Most critical filter for URL handling
-  eleventyConfig.addFilter("absolute_url", (url) => {
-    const baseurl = "/unstable_archives";
-    if (!url) return baseurl;
-    // Absolute URLs, protocol-relative URLs and non-HTTP schemes
-    // (mailto:, tel:) must be left alone.
-    if (/^([a-z][a-z0-9+.-]*:|\/\/)/i.test(url)) return url;
-    return baseurl + (url.startsWith("/") ? url : "/" + url);
-  });
+  // Jekyll's absolute_url is `site.url + site.baseurl + path`, and the
+  // published site uses it for every link, stylesheet and script -- there is
+  // not a single root-relative URL in its output. Match that exactly.
+  //
+  // The host comes from SITE_URL when set, otherwise from _data/site.json
+  // (which carries the same value the old _config.yml did). That indirection
+  // is what lets the identical source build correctly in three places:
+  //   * `npm run serve` sets SITE_URL to empty, so links are root-relative and
+  //     work on localhost -- the same courtesy `jekyll serve` did.
+  //   * The deploy workflow sets it to whichever Pages site is publishing, so
+  //     a fork previews against its own domain instead of linking back to the
+  //     original.
+  //   * Anywhere else it falls back to site.json and matches the live site.
+  const SITE = require("./_data/site.json");
+  const BASE_URL = SITE.baseurl;
+  const SITE_URL = (process.env.SITE_URL !== undefined ? process.env.SITE_URL : SITE.url)
+    .replace(/\/+$/, "");
 
-  // relative_url - Same as absolute_url for this project
-  eleventyConfig.addFilter("relative_url", (url) => {
-    const baseurl = "/unstable_archives";
-    if (!url) return baseurl;
+  const absoluteUrl = (url) => {
+    if (!url) return SITE_URL + BASE_URL;
     // Absolute URLs, protocol-relative URLs and non-HTTP schemes
     // (mailto:, tel:) must be left alone.
     if (/^([a-z][a-z0-9+.-]*:|\/\/)/i.test(url)) return url;
-    return baseurl + (url.startsWith("/") ? url : "/" + url);
+    const joined = SITE_URL + BASE_URL + (url.startsWith("/") ? url : "/" + url);
+    // Jekyll builds this through Addressable, whose normalize() drops an empty
+    // fragment. The footer passes '#' as the default logo link, so without this
+    // every page ends up with `.../unstable_archives/#` where the published
+    // site has `.../unstable_archives/`.
+    return joined.endsWith("#") ? joined.slice(0, -1) : joined;
+  };
+
+  eleventyConfig.addFilter("absolute_url", absoluteUrl);
+
+  // relative_url - Jekyll's version prepends only the baseurl, no host.
+  eleventyConfig.addFilter("relative_url", (url) => {
+    if (!url) return BASE_URL;
+    if (/^([a-z][a-z0-9+.-]*:|\/\/)/i.test(url)) return url;
+    return BASE_URL + (url.startsWith("/") ? url : "/" + url);
   });
 
   // where - Filter array by property value

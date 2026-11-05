@@ -5,10 +5,10 @@
   "scripts": {
     "build": "npm run build:sass && eleventy",
     "build:sass": "sass src/sass/styles.scss:_site/assets/styles.css --style=compressed",
-    "serve": "npm run build:sass && eleventy --serve",
+    "serve": "npm run build:sass && SITE_URL= eleventy --serve",
     "watch": "npm-run-all --parallel watch:*",
     "watch:sass": "sass --watch src/sass/styles.scss:_site/assets/styles.css",
-    "watch:eleventy": "eleventy --serve",
+    "watch:eleventy": "SITE_URL= eleventy --serve",
     "clean": "rm -rf _site",
     "check": "node scripts/check-build.js"
   },
