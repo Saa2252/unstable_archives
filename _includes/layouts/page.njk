@@ -1,7 +1,11 @@
 ---
 layout: default
 ---
-{% if not show_title == false %}
+{# Nunjucks binds `not` tighter than `==`, so `not show_title == false` means
+   `(not show_title) == false` -- the opposite of Liquid's `unless
+   page.show_title == false`, which hid the title on every page that did not
+   set the flag. Compare explicitly instead. #}
+{% if show_title !== false %}
   <h2 class='page-title'>{{ title }}</h2>
 {% endif %}
 

@@ -22,7 +22,7 @@ layout: default
     {% endif %}
     <span class='pagination-link' id='nextlink'></span>
   </div>
-  {% if not pagination == false %}{% include "item_pagination.njk" %}{% endif %}
+  {% if pagination !== false %}{% include "item_pagination.njk" %}{% endif %}
 {% endif %}
 
 {% if translation %}

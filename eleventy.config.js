@@ -294,7 +294,66 @@ module.exports = function(eleventyConfig) {
   const markdownItLib = markdownIt({
     html: true,
     typographer: true
-  }).use(require("markdown-it-footnote"));
+  }).use(require("markdown-it-footnote"))
+    .use(require("./scripts/markdown-kramdown-html.js"));
+
+  // Kramdown and CommonMark disagree in two ways that this content depends on.
+  //
+  //  1. Where a raw HTML block ends. Kramdown closes it at the element's
+  //     closing tag and resumes parsing markdown on the next line; CommonMark
+  //     runs it on to the next BLANK line. The content interleaves
+  //     `<p class="hang">...</p>` lines with markdown headings and links and
+  //     rarely leaves blank lines between them, so under CommonMark everything
+  //     after the first HTML line is swallowed and emitted raw. On
+  //     pages/scholarship.md that silently turned a heading and 18 links into
+  //     literal `##` and `[text](url)`.
+  //
+  //  2. What a standalone `<br>` is. Kramdown treats it as a span, so it joins
+  //     the surrounding paragraph and only gets its own `<p><br /></p>` when a
+  //     blank line (or a block element) isolates it. CommonMark treats the line
+  //     as an HTML block, which both loses that paragraph wrapper and swallows
+  //     the lines after it.
+  //
+  // Normalising the source reproduces kramdown without editing the authors'
+  // markdown in the ~57 places `<br>` is used for spacing.
+  const ONE_LINE_HTML_BLOCK = /^<([a-z][a-z0-9]*)\b[^>]*>.*<\/\1>$/i;
+  const STANDALONE_BR = /^<br\s*\/?>$/i;
+  // Markdown constructs that start a new block, so a `<br>` cannot join them.
+  const BLOCK_START = /^(#{1,6}\s|>|\s*([-*+]|\d+[.)])\s|```|~~~|<)/;
+
+  markdownItLib.core.ruler.before("normalize", "kramdown_compat", (state) => {
+    const lines = state.src.split("\n");
+    const out = [];
+
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i];
+      const trimmed = line.trim();
+
+      if (STANDALONE_BR.test(trimmed)) {
+        const next = (lines[i + 1] || "").trim();
+        // Isolated by a blank line or a new block: its own paragraph.
+        if (next === "" || BLOCK_START.test(next)) {
+          out.push("<p><br></p>", "");
+          continue;
+        }
+        // Otherwise it belongs to the paragraph that follows, as a span. Join
+        // the lines so CommonMark cannot read the `<br>` as a block opener.
+        out.push(`${trimmed} ${lines[i + 1].trim()}`);
+        i++;
+        continue;
+      }
+
+      // Let markdown parsing resume after a self-contained HTML element.
+      if (ONE_LINE_HTML_BLOCK.test(trimmed)) {
+        out.push(line, "");
+        continue;
+      }
+
+      out.push(line);
+    }
+
+    state.src = out.join("\n");
+  });
 
   eleventyConfig.setLibrary("md", markdownItLib);
 
