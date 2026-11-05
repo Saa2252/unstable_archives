@@ -1,0 +1,103 @@
+{
+  "title": "Unstable Archives",
+  "description": "Gender & Empire in South Asia",
+  "url": "https://unstable-archives.github.io",
+  "baseurl": "/unstable_archives",
+  "copyright": "2021 Megan Eaton Robb",
+  "logo": "/img/pendant_transparent.png",
+  "menu": [
+    {
+      "label": "Introduction",
+      "sub": [
+        { "label": "Introduction", "link": "/introduction/" },
+        { "label": "Historical Context", "link": "/historical_context/" },
+        { "label": "Timeline", "link": "/timeline/" },
+        { "label": "Travels", "link": "/travels/" },
+        { "label": "Bibliography", "link": "/bibliography/" }
+      ]
+    },
+    {
+      "label": "Exhibits",
+      "sub": [
+        { "label": "Family", "link": "/exhibits/family/" },
+        { "label": "Religion", "link": "/exhibits/religion/" },
+        { "label": "Scribal Cultures", "link": "/exhibits/scribal_cultures/" },
+        { "label": "Law & Land", "link": "/exhibits/law_land/" },
+        { "label": "Law & Interracial Marriage", "link": "/exhibits/law_interracial_marriage/" },
+        { "label": "Attitudes towards Interracial Romance", "link": "/attitudes_towards_interracial_romance/" },
+        { "label": "Ryots and Company Rule", "link": "/exhibits/ryots_and_company_rule/" },
+        { "label": "Between Two Words", "link": "/exhibits/between_two_words/" }
+      ]
+    },
+    {
+      "label": "Scholarship",
+      "sub": [
+        { "label": "DH & Family Archives", "link": "/dh_family_archives/" },
+        { "label": "Stakes & Literature", "link": "/stakes_literature/" },
+        { "label": "Scholarship", "link": "/scholarship/" },
+        { "label": "Silences", "link": "/silences/" },
+        { "label": "Our Approach", "link": "/approach/" }
+      ]
+    },
+    {
+      "label": "Teaching Resources",
+      "sub": [
+        { "label": "Reading Resources", "link": "/reading_resources_for_teachers/" },
+        { "label": "Bibliography for Scholars", "link": "/bibliography_for_scholars/" }
+      ]
+    },
+    {
+      "label": "Browse",
+      "sub": [
+        { "label": "Browse", "link": "/collection/" },
+        { "label": "Search", "link": "/search/" },
+        { "label": "Reuse", "link": "/reuse/" }
+      ]
+    }
+  ],
+  "footer": {
+    "links": [
+      { "label": "Wax", "link": "/credits" },
+      { "label": "Contact", "link": "mailto:unstablearchives2020@gmail.com" }
+    ],
+    "logos": [
+      { "img": "/img/pendant_transparent.png" },
+      { "img": "/img/penn_logo.png" }
+    ]
+  },
+  "search": {
+    "main": {
+      "index": "/search/index.json",
+      "collections": {
+        "unstable_archives": {
+          "content": true,
+          "fields": [
+            "label",
+            "translation",
+            "transcription",
+            "summary",
+            "contents",
+            "keywords",
+            "object_type",
+            "shelfmark",
+            "metadata_creators",
+            "repository_city",
+            "roles",
+            "_date",
+            "place_origin",
+            "provenance_details",
+            "language",
+            "decoration",
+            "layout",
+            "hand_script",
+            "dimensions",
+            "additional_info",
+            "notes_digitizer",
+            "copyright_statement",
+            "images"
+          ]
+        }
+      }
+    }
+  }
+}

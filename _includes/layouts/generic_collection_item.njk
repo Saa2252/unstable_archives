@@ -1,0 +1,47 @@
+---
+layout: default
+---
+
+{# The block below controls the image viewer #}
+
+<h3 alt="{{ label | escape }}" class='item-label'>{{ label }}</h3>
+
+{% if image_viewer %}
+  {% set viewer = image_viewer %}
+{% elif layoutData.image_viewer %}
+  {% set viewer = layoutData.image_viewer %}
+{% endif %}
+
+{% if viewer %}
+  <div class='item-view'>
+    <span class='pagination-link' id='prevlink'></span>
+    {% if viewer == 'openseadragon' %}
+      {% include "osd_iiif_image_viewer.njk" %}
+    {% else %}
+      {% include "simple_image_viewer.njk" %}
+    {% endif %}
+    <span class='pagination-link' id='nextlink'></span>
+  </div>
+  {% if not pagination == false %}{% include "item_pagination.njk" %}{% endif %}
+{% endif %}
+
+{% if translation %}
+  <div class='translation'>
+    <p>{{ translation }}</p>
+  </div>
+{% endif %}
+
+{% if transcription %}
+  <div class='transcription'>
+    <p>{{ transcription }}</p>
+  </div>
+{% endif %}
+
+{# The block below controls the item metadata table #}
+
+{% if meta and meta.length %}
+  {% set metadata = meta %}
+{% endif %}
+{% if metadata and metadata.length %}
+  {% include "item_metadata.njk" %}
+{% endif %}

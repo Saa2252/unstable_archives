@@ -1,0 +1,33 @@
+{# Parameters: searchPlaceholder, searchKey (optional) #}
+{% set placeholder = searchPlaceholder if searchPlaceholder else 'Search... ' %}
+{% set key = searchKey if searchKey else 'main' %}
+{% set config = site.search[key] %}
+{% set index = config.index | absolute_url %}
+
+{# Build fields array from search configuration #}
+{% set fields = [] %}
+{% for collName, collConfig in config.collections %}
+  {% for field in collConfig.fields %}
+    {% set fields = (fields.push(field), fields) %}
+  {% endfor %}
+{% endfor %}
+{% set fields = fields | uniq %}
+
+<div class='search-block'>
+  <div class='input-group'>
+    <input type='text' class='form-control' id='search' name='x' placeholder='{{ placeholder }}'>
+  </div>
+  <div id='results'></div>
+</div>
+
+<script type='text/javascript' src="{{ '/assets/elasticlunr.min.js' | absolute_url }}"></script>
+<script type='text/javascript' src="{{ '/assets/search-ui.js' | absolute_url }}"></script>
+<script type='text/javascript'>
+  var fields    = {{ site.search.main.collections.unstable_archives.fields | jsonify | safe }};
+  var indexFile = "{{ index }}";
+  var url       = "{{ '' | absolute_url }}";
+
+  $(document).ready(function() {
+    startSearchUI(fields, indexFile, url);
+  });
+</script>

@@ -1,0 +1,51 @@
+{# Uses metadata array set before include, with each item having label, key, and optional type #}
+{% set metaItems = metadata if metadata else meta %}
+<dl class='metadata-block'>
+  {% for item in metaItems %}
+    {# Get value from front matter using the key #}
+    {% set value = "" %}
+    {% if item.key %}
+      {# Access the value from page data using the key #}
+      {% if item.key == "label" %}{% set value = label %}
+      {% elif item.key == "summary" %}{% set value = summary %}
+      {% elif item.key == "contents" %}{% set value = contents %}
+      {% elif item.key == "keywords" %}{% set value = keywords %}
+      {% elif item.key == "object_type" %}{% set value = object_type %}
+      {% elif item.key == "shelfmark" %}{% set value = shelfmark %}
+      {% elif item.key == "metadata_creators" %}{% set value = metadata_creators %}
+      {% elif item.key == "repository_city" %}{% set value = repository_city %}
+      {% elif item.key == "roles" %}{% set value = roles %}
+      {% elif item.key == "_date" %}{% set value = _date %}
+      {% elif item.key == "place_origin" %}{% set value = place_origin %}
+      {% elif item.key == "provenance_details" %}{% set value = provenance_details %}
+      {% elif item.key == "language" %}{% set value = language %}
+      {% elif item.key == "decoration" %}{% set value = decoration %}
+      {% elif item.key == "layout" %}{% set value = layoutField %}
+      {% elif item.key == "hand_script" %}{% set value = hand_script %}
+      {% elif item.key == "dimensions" %}{% set value = dimensions %}
+      {% elif item.key == "additional_info" %}{% set value = additional_info %}
+      {% elif item.key == "notes_digitizer" %}{% set value = notes_digitizer %}
+      {% elif item.key == "copyright_statement" %}{% set value = copyright_statement %}
+      {% elif item.key == "terms_use" %}{% set value = terms_use %}
+      {% elif item.key == "images" %}{% set value = images %}
+      {% elif item.key == "manifest" %}{% set value = manifest %}
+      {% endif %}
+    {% else %}
+      {% set value = item.value %}
+    {% endif %}
+
+    {# Only display non-empty values #}
+    {% if value and value | trim != '' %}
+      {% if item.type == 'link' %}
+        {% if item.key == 'manifest' %}
+          {% set value %}<a href="{{ value | absolute_url }}" target="_blank" rel="noreferrer">{{ value | absolute_url }}</a>{% endset %}
+        {% else %}
+          {% set linkDisplay = value | absolute_url | replace("https://", "") | replace("http://", "") | split("/") | first %}
+          {% set value %}<a href="{{ value | absolute_url }}" target="_blank" rel="noreferrer">{{ linkDisplay }}</a>{% endset %}
+        {% endif %}
+      {% endif %}
+        <dt>{{ item.label }}</dt>
+        <dd>{{ value | trim | safe }}</dd>
+    {% endif %}
+  {% endfor %}
+</dl>
