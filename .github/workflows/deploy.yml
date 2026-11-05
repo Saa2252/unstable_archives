@@ -2,11 +2,11 @@ name: deploy
 
 on:
   push:
-    # `eleventy-migration` is here so the work can be previewed on a fork's
+    # The migration branch is here so the work can be previewed on a fork's
     # Pages site before it is merged. Harmless once merged: the branch simply
     # stops existing. A fork's `main` still holds the old Jekyll tree and has
     # no workflow file at all, so nothing runs there.
-    branches: [main, eleventy-migration]
+    branches: [main, eleventy-migration-v3]
   workflow_dispatch:
 
 permissions:
