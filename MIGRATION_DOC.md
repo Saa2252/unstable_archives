@@ -978,6 +978,36 @@ needs a missing file rather than a code change:
   needs the image itself rather than a code change. It is the only broken
   internal link left in the build.
 
+### Deployment (added after the original migration)
+
+The original migration document did not cover deployment, and that turned out
+to be the one gap that would have stopped the site going live.
+
+The Jekyll site was published by GitHub Pages' **native Jekyll build** — which
+is why there was no deploy script in the repository. Pages does not build
+Eleventy, so removing Jekyll removed the entire publishing mechanism. Added:
+
+- `.github/workflows/deploy.yml` — builds on push to `main` and publishes to
+  Pages. Requires **Settings → Pages → Source: GitHub Actions**.
+- `.github/workflows/build.yml` — replaces the old `ci:test` workflow, which
+  installed Ruby and ran `bundle exec rake wax:test` against a Gemfile and
+  Rakefile that no longer exist.
+- `scripts/check-build.js` (`npm run check`) — post-build validation, run in
+  both workflows.
+
+`scripts/check-build.js` exists specifically because of defect 6. A build can
+pass every page-level comparison while the image viewer is dead on every item
+page, so it asserts what that comparison cannot see: all 861 IIIF files parse as
+JSON, no unrendered template syntax reached the output, internal links resolve,
+and the expected pages and all 52 item pages are present. It was verified to
+fail when defect 6 is reintroduced.
+
+The deploy workflow also guards the path prefix: the site hardcodes
+`/unstable_archives`, and a Pages project site is served from
+`/<repository-name>/`, so a repository with a different name would publish a
+site whose every link is broken without any build error. The workflow fails
+early with instructions instead.
+
 ### Known follow-up
 
 `src/sass/` still uses Sass `@import`, which is deprecated and will be removed

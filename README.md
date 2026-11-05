@@ -35,6 +35,7 @@ with a path prefix, so the homepage lives at `/unstable_archives/`.
 | `npm run build` | Production build into `_site/` |
 | `npm run watch` | Watch Sass and templates in parallel |
 | `npm run clean` | Delete `_site/` |
+| `npm run check` | Validate the built site (run after `build`) |
 
 `npm run build` compiles Sass first, then runs Eleventy. Running `eleventy`
 alone will not refresh the stylesheet.
@@ -82,6 +83,26 @@ Add a row to `_data/unstable_archives.csv` and a matching Markdown file in
 `_unstable_archives/` whose front matter carries the metadata fields. Items are
 ordered by their `order` field. Fields may contain inline HTML; `transcription`
 and `translation` are rendered unescaped.
+
+## Deployment
+
+Pushing to `main` builds the site and publishes it to GitHub Pages via
+`.github/workflows/deploy.yml`. In the repository's **Settings → Pages**, the
+source must be set to **GitHub Actions** (not "Deploy from a branch" — that
+setting is for Jekyll, which GitHub Pages builds natively and Eleventy is not).
+
+### The repository name matters
+
+The site is built with the path prefix `/unstable_archives`, and a GitHub Pages
+project site is served from `/<repository-name>/`. **If the repository is named
+anything else, every link and stylesheet on the deployed site breaks** — with no
+build error, because nothing is wrong until a browser asks for a path that isn't
+there. The deploy workflow checks this up front and fails with an explanation
+rather than publishing a broken site.
+
+To host under a different name, change the prefix in all four places:
+`baseurl` in `_data/site.json`, the `absolute_url` and `relative_url` filters in
+`eleventy.config.js`, and `$logo` in `src/sass/styles.scss`.
 
 ## Docker
 

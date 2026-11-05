@@ -9,7 +9,8 @@
     "watch": "npm-run-all --parallel watch:*",
     "watch:sass": "sass --watch src/sass/styles.scss:_site/assets/styles.css",
     "watch:eleventy": "eleventy --serve",
-    "clean": "rm -rf _site"
+    "clean": "rm -rf _site",
+    "check": "node scripts/check-build.js"
   },
   "devDependencies": {
     "@11ty/eleventy": "^2.0.1",
