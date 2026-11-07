@@ -1,0 +1,15 @@
+{# Parameters: inlineCollection, inlinePid (set before include) #}
+{% set inlineItem = collections[inlineCollection] | where('pid', inlinePid) | first if inlineCollection and inlinePid %}
+
+<div class='inline-image-reference'>
+  {% if inlineItem %}
+  <a href='{{ inlineItem.url | absolute_url }}'>
+    <img src='{{ inlineItem.data.full | absolute_url }}' alt="{{ inlineItem.data.label | escape }}"/>
+  </a>
+  {% if inlineItem.data.label %}
+  <p class='image-caption'>
+    Above: <a href='{{ inlineItem.url | absolute_url }}'>{{ inlineItem.data.label }}</a>
+  </p>
+  {% endif %}
+  {% endif %}
+</div>

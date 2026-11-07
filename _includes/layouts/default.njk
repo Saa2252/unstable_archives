@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang='en-us'>
-  {% include head.html %}
+  {% include "head.njk" %}
 
   <body>
-    <time datetime='{{ 'now' | date: '%Y-%m-%d %H:%M' }}'></time>
-    {% include header.html %}
+    <time datetime='{{ page.date | date_to_xmlschema if page.date else "" }}'></time>
+    {% include "header.njk" %}
 
-    {% if page.banner %}
-      {% assign b = page.banner %}
-      {% include parallax_image.html collection=b.collection pid=b.pid y=b.y height=b.height image=b.image %}
+    {% if banner %}
+      {% set b = banner %}
+      {% include "parallax_image.njk" %}
     {% endif %}
 
     <div id='wax-main'>
       <div id='wax-content' class='wax-inline-container'>
-        {{ content }}
+        {{ content | safe }}
       </div>
     </div>
 
-    {% include footer.html %}
+    {% include "footer.njk" %}
   </body>
 
   <script type='text/javascript' async defer src='{{ "/assets/bootstrap/bootstrap.min.js" | absolute_url }}'></script>

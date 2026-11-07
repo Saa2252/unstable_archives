@@ -4,4 +4,6 @@ title: Browse the Collection
 permalink: /collection/
 ---
 
-{% include collection_gallery.html facet_by='object_type' collection='unstable_archives' %}
+{% set galleryCollection = "unstable_archives" %}
+{% set facet_by = "object_type" %}
+{% include "collection_gallery.njk" %}

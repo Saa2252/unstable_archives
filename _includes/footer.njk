@@ -16,12 +16,12 @@
             <a href='{{ item.link | absolute_url }}'>
               {{ item.label }}
             </a>
-          {% unless forloop.last %} / {% endunless %}
+          {% if not loop.last %} / {% endif %}
           {% endfor %}
         </p>
         <p class='footer-logos'>
           {% for item in site.footer.logos %}
-          {% assign link = item.link | default: '#' %}
+          {% set link = item.link if item.link else '#' %}
           <a href="{{ link | absolute_url }}" aria-label="Logo link to resource">
             <img src='{{ item.img | absolute_url }}' alt="logo"/>
           </a>

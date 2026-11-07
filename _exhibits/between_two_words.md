@@ -47,7 +47,7 @@ permalink: /exhibits/between_two_words/
 <p>9: Elizabeth’s Diary, D2091 F17, Gloucestershire archives.</p>
 <p>10: Sir Henry Russell Papers, British Library, MSS Eur.</p>
 <p>11: Christopher Hawes, <i>Poor Relations: The Making of a Eurasian Community in British India, 1773–1833</i>.</p>
-<p>12: Fisher, M. H. (2010). <i>The inordinately strange life of Dyce Sombre: Victorian Anglo Indian MP and Chancery "lunatic"<i>. London: Hurst & Company.</p>
+<p>12: Fisher, M. H. (2010). <i>The inordinately strange life of Dyce Sombre: Victorian Anglo Indian MP and Chancery "lunatic"</i>. London: Hurst & Company.</p>
 <p>13: Schwabe, L. (2021, February 4). “The enduring relevance of liberal arts in India: Henry Derozio and the Bengal Renaissance.” <i>Los Angeles Review of Books.</i> <a href="https://lareviewofbooks.org/blog/essays/enduring-relevance-liberal-arts-india-henry-derozio-bengal-renaissance/">https://lareviewofbooks.org/blog/essays/enduring-relevance-liberal-arts-india-henry-derozio-bengal-renaissance/</a>.</p>
 <p>14: National Army Museum. (n.d.). Colonel James Skinner CB, 1st Regiment of Local Horse, 1836 (Oil on canvas by an unknown artist after William Melville) [Museum collection object]. National Army Museum. <a href="https://collection.nam.ac.uk/detail.php?acc=1956-02-622-1">https://collection.nam.ac.uk/detail.php?acc=1956-02-622-1</a>.</p>
 <p>15: Dalrymple, William. <i>White Mughals</i>. New York: Penguin, 2002.</p>
