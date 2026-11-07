@@ -2,15 +2,11 @@
   <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>
-    {{ site.title }}{% if label %} | {{ label }}{% elif title %} | {{ title }}{% endif %}
+    {{ site.title }}{% if page.label %} | {{ page.label }}{% elsif page.title %} | {{ page.title }}{% endif %}
   </title>
 
   <link rel='canonical' href='{{ page.url | absolute_url }}'/>
-  {# The published site points the favicon at img/logo.png, which is not in the
-   repository and 404s on every page. Kept as-is so this migration changes the
-   build engine and nothing else; _data/site.json already carries the real
-   logo (img/pendant_transparent.png) if the project wants to correct it. #}
-<link rel='icon' type='image/png' href="{{ 'img/logo.png' | absolute_url }}">
+  <link rel='icon' type='image/png' href="{{ 'img/logo.png' | absolute_url }}">
   <link rel='stylesheet' href="{{ '/assets/styles.css' | absolute_url }}"/>
 
   <script type='text/javascript' src="{{ '/assets/jquery-3.2.1.min.js' | absolute_url }}"></script>

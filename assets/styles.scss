@@ -1,9 +1,12 @@
+---
+sitemap: false
+---
 /*
 variable declaration
 */
 
 /* branding */
-$logo: url("/unstable_archives/assets/logo.png");
+$logo: url("{{ '/assets/logo.png' | absolute_url }}");
 
 /* text */
 

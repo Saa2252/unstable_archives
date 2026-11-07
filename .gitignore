@@ -1,28 +1,15 @@
-# Eleventy output
+# jekyll things
 _site
+.sass-cache
+.jekyll-metadata
+.jekyll-cache
 
-# Node.js
-node_modules
-npm-debug.log
-
-# System files
+# system things
 .DS_Store
 .idea/
-*.swp
-*.swo
-*~
 
-# Environment files
-.env
-.env.local
-.env.*.local
+# ruby things
+Gemfile.lock
 
-# IDE
-.vscode/
-*.sublime-*
-
-# Build artifacts
-*.log
-
-# Local editor/agent config
-.claude/
+# wax things
+wax_tasks

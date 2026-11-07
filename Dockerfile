@@ -1,31 +1,27 @@
-FROM node:20-alpine
+FROM ruby:2.7.2
 
-LABEL maintainer="Unstable Archives Project"
+MAINTAINER Andrew Woods <awoods01@gmail.com>
 
-# Install build dependencies for native modules
-RUN apk add --no-cache \
-    python3 \
-    make \
-    g++ \
-    git
+# Install apt dependencies
+RUN apt-get update -y
+RUN apt-get install -y build-essential
+RUN apt-get install -y software-properties-common
+RUN apt-get install -y git
+RUN apt-get install -y ghostscript
+RUN apt-get install -y imagemagick
+RUN apt-get install -y libvips
 
-# Create app directory
-WORKDIR /app
+# Add imagemagick PDF fix
+RUN sed -i '/disable ghostscript format types/,+6d' /etc/ImageMagick-6/policy.xml
 
-# Copy package files
-COPY package*.json ./
+# Install locales
+RUN apt-get update && apt-get install -y locales && rm -rf /var/lib/apt/lists/* \
+    && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
+ENV LANG en_US.utf8
 
-# Install dependencies
-RUN npm ci
+RUN mkdir /wax
+COPY Gemfile* *.gemspec ./wax
+WORKDIR /wax
+RUN bundle
 
-# Copy application files
-COPY . .
-
-# Build the site
-RUN npm run build
-
-# Expose port for development server
-EXPOSE 8080
-
-# Default command to serve the site
-CMD ["npm", "run", "serve"]
+EXPOSE 4000

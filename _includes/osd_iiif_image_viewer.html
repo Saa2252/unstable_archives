@@ -3,7 +3,7 @@
 
 <script>
   $(document).ready(function () {
-    var manifestUrl = "{{ manifest | absolute_url }}";
+    var manifestUrl = "{{ include.manifest | absolute_url }}";
     $.getJSON(manifestUrl, function(data) {
       var tileSources = [];
       $.each(data.sequences[0].canvases, function(_k, val) {
